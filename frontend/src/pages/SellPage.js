@@ -58,7 +58,7 @@ const Products = () => {
   return (
     <div className="Product grid grid-cols-3 gap-4 mt-0 ">
       <div className="col-span-2">
-        <div className="w-[700px] ml-72 fixed bg-white bg-opacity-90">
+        <div className=" fixed w-3/6 bg-white bg-opacity-90">
           <div className="py-4 flex justify-end items-center">
             <input
               type="text"
@@ -85,22 +85,28 @@ const Products = () => {
               ))}
         </div>
       </div>
-      <div className="col-span-1 fixed ml-[1000px] mt-24 pl-10">
-        <h2 className="text-2xl font-bold mb-2 ">Cart</h2>
-        {cart.map((item, index) => (
-          <div key={index} className="mb-2 flex gap-4">
-            <p className="text-lg font-bold">{item.product.name}</p>
-            <p>Unit Price: {item.product.price.toFixed(0)}/=</p>
-            <p>Quantity: {item.quantity}</p>
+      <div className="col-span-1 mt-24">
+        <div className="bg-red-300 fixed">
+          <h2 className="text-2xl font-bold mb-2 text-center">Cart</h2>
+          {cart.map((item, index) => (
+            <div key={index} className="mb-2 flex gap-4">
+              <p className="text-lg font-bold">{item.product.name}</p>
+              <p>Unit Price: {item.product.price.toFixed(0)}/=</p>
+              <p>Quantity: {item.quantity}</p>
+            </div>
+          ))}
+          <h2 className="text-2xl font-bold mt-2 text-center mt-6">
+            Total: {total.toFixed(0)}/=
+          </h2>
+          <div className="flex justify-center">
+            <button
+              onClick={handleSell}
+              className="mt-3 px-4 py-2 text-white bg-blue-500 rounded-md"
+            >
+              Sell
+            </button>
           </div>
-        ))}
-        <h2 className="text-2xl font-bold mt-2">Total: {total.toFixed(0)}/=</h2>
-        <button
-          onClick={handleSell}
-          className="mt-3 px-4 py-2 text-white bg-blue-500 rounded-md"
-        >
-          Sell
-        </button>
+        </div>
       </div>
     </div>
   );

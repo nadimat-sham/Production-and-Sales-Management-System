@@ -15,7 +15,7 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div className="max-w-md ml-[350px] bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3  ">
+    <div className="max-w-md  bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3  ">
       <div className="p-8">
         <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
           Category: {product.catagory}

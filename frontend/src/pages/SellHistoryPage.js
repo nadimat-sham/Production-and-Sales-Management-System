@@ -21,7 +21,6 @@ const SellHistoryPage = () => {
 
   return (
     <div>
-      <h1>Sell History</h1>
       {sellHistory.map((record, index) => (
         <SellHistory key={index} sellRecord={record} /> // Use the SellHistoryCard component for each sell record
       ))}
