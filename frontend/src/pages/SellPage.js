@@ -86,7 +86,7 @@ const Products = () => {
         </div>
       </div>
       <div className="col-span-1 mt-24">
-        <div className="bg-red-300 fixed">
+        <div className=" fixed">
           <h2 className="text-2xl font-bold mb-2 text-center">Cart</h2>
           {cart.map((item, index) => (
             <div key={index} className="mb-2 flex gap-4">
