@@ -10,15 +10,21 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Sidebar />
-        <div className="pages">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/add-product" element={<AddProduct />} />
-            <Route path="/sell" element={<Sell />} />
-            <Route path="/sell-history" element={<SellHistory />} />
-          </Routes>
+        <div className="flex">
+          <div className="w-1/4">
+            <Sidebar />
+          </div>
+          <div className="w-3/4">
+            <div className="pages">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/add-product" element={<AddProduct />} />
+                <Route path="/sell" element={<Sell />} />
+                <Route path="/sell-history" element={<SellHistory />} />
+              </Routes>
+            </div>
+          </div>
         </div>
       </BrowserRouter>
     </div>
