@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Products from "../pages/ProductsPage";
-import Sell from "../pages/SellPage";
 
 const Sidebar = () => {
   return (
@@ -18,6 +16,14 @@ const Sidebar = () => {
           <div>
             <Link to="/products" className="w-full py-2 px-4 hover:bg-gray-700">
               Products
+            </Link>
+          </div>
+          <div>
+            <Link
+              to="/customers"
+              className="w-full py-2 px-4 hover:bg-gray-700"
+            >
+              Customers
             </Link>
           </div>
           <div>

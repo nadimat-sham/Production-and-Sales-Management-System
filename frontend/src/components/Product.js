@@ -39,11 +39,8 @@ const Product = ({ product }) => {
         >
           View Sell History
         </button>
-        <button
-          onClick={handleDelete}
-          className="mt-3 ml-72 px-4 py-2 bg-red-500 text-white rounded-md"
-        >
-          Delete
+        <button className="icons" onClick={handleDelete}>
+          delete
         </button>
       </div>
     </div>

@@ -1,33 +1,31 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Product from "../components/Product";
-import AddProduct from "../components/AddProduct";
+import Customer from "../components/Customer";
+import AddCustomer from "../components/AddCustomer";
 
-const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [addingProduct, setAddingProduct] = useState(false);
+const Customers = () => {
+  const [customers, setCustomers] = useState([]);
+  const [addingCustomer, setAddingCustomer] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await fetch("/showroom/products");
+    const fetchCustomers = async () => {
+      const response = await fetch("/showroom/customers");
       const json = await response.json();
-
       if (response.ok) {
-        setProducts(json);
+        setCustomers(json);
         console.log(json);
       }
     };
 
-    fetchProducts();
+    fetchCustomers();
   }, []);
 
-  const handleAddProduct = () => {
-    setAddingProduct(true);
+  const handleAddCustomer = () => {
+    setAddingCustomer(true);
   };
 
   const handleCancel = () => {
-    setAddingProduct(false);
+    setAddingCustomer(false);
   };
 
   const handleSearch = (event) => {
@@ -36,8 +34,8 @@ const Products = () => {
 
   return (
     <div className="mt-0">
-      {addingProduct ? (
-        <AddProduct onCancel={handleCancel} setProducts={setProducts} />
+      {addingCustomer ? (
+        <AddCustomer onCancel={handleCancel} setCustomers={setCustomers} />
       ) : (
         <>
           <div className="fixed w-[1200px]">
@@ -50,23 +48,23 @@ const Products = () => {
                 className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
               />
               <button
-                onClick={handleAddProduct}
+                onClick={handleAddCustomer}
                 className="px-4 py-2 bg-blue-500 text-white rounded-md"
               >
-                Add Product
+                Add Customer
               </button>
             </div>
           </div>
-          <div className="products pt-16">
-            {products &&
-              products
-                .filter((product) =>
-                  product.name
+          <div className="customers pt-16">
+            {customers &&
+              customers
+                .filter((customer) =>
+                  customer.name
                     .toLowerCase()
                     .startsWith(searchTerm.toLowerCase())
                 )
-                .map((product) => (
-                  <Product product={product} key={product._id} />
+                .map((customer) => (
+                  <Customer customer={customer} key={customer._id} />
                 ))}
           </div>
         </>
@@ -75,4 +73,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default Customers;

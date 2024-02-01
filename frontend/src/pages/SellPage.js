@@ -3,9 +3,11 @@ import axios from "axios";
 import ProductInSell from "../components/ProductInSell";
 
 const Products = () => {
-  const [products, setProducts] = useState(null);
+  const [customers, setCustomers] = useState([]);
+  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [cart, setCart] = useState([]);
+  const [referenceName, setReferenceName] = useState(""); // New state variable for reference name
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,8 +19,19 @@ const Products = () => {
         console.log(json);
       }
     };
+    const fetchCustomers = async () => {
+      const response = await fetch("/showroom/customers");
+      const json = await response.json();
 
+      if (response.ok) {
+        setCustomers(json);
+      }
+    };
+
+    fetchCustomers();
     fetchProducts();
+    console.log(products);
+    console.log(customers);
   }, []);
 
   const handleSearch = (event) => {
@@ -37,7 +50,7 @@ const Products = () => {
     try {
       const response = await fetch("/showroom/sells/sell", {
         method: "POST",
-        body: JSON.stringify(cart),
+        body: JSON.stringify({ cart, referenceName }), // Include referenceName in the request body
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,9 +69,9 @@ const Products = () => {
   );
 
   return (
-    <div className="Product grid grid-cols-3 gap-4 mt-0 ">
-      <div className="col-span-2">
-        <div className=" fixed w-3/6 bg-white bg-opacity-90">
+    <div className="Product grid grid-cols-5 gap-4 mt-0 ">
+      <div className="col-span-3">
+        <div className=" fixed w-2/5 bg-white bg-opacity-90">
           <div className="py-4 flex justify-end items-center">
             <input
               type="text"
@@ -85,23 +98,69 @@ const Products = () => {
               ))}
         </div>
       </div>
-      <div className="col-span-1 mt-24">
+      <div className="col-span-2 mt-24">
         <div className=" fixed">
           <h2 className="text-2xl font-bold mb-2 text-center">Cart</h2>
-          {cart.map((item, index) => (
-            <div key={index} className="mb-2 flex gap-4">
-              <p className="text-lg font-bold">{item.product.name}</p>
-              <p>Unit Price: {item.product.price.toFixed(0)}/=</p>
-              <p>Quantity: {item.quantity}</p>
+          <table className="table-auto w-full mt-2">
+            <thead>
+              <tr>
+                <th className="px-4 py-2">No.</th>
+                <th className="px-4 py-2">Item</th>
+                <th className="px-4 py-2">Quantity</th>
+                <th className="px-4 py-2">Unit Price</th>
+                <th className="px-4 py-2">Total Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item, index) => (
+                <tr key={index}>
+                  <td className="border px-4 py-2">{index + 1}</td>
+                  <td className="border px-4 py-2">{item.product.name}</td>
+                  <td className="border px-4 py-2">{item.quantity}</td>
+                  <td className="border px-4 py-2">
+                    {item.product.price.toFixed(0)}
+                  </td>
+                  <td className="border px-4 py-2">
+                    {(item.product.price * item.quantity).toFixed(0)}
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td
+                  colSpan="4"
+                  className="border px-4 py-2 text-right font-semibold"
+                >
+                  Total:
+                </td>
+                <td className="border px-4 py-2">{total.toFixed(0)}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div className="flex justify-center gap-3 mt-4">
+            <div className="flex gap-1">
+              <span className="text-red-500">*</span>
+              <select
+                value={referenceName}
+                onChange={(e) => setReferenceName(e.target.value)}
+                className="border-2 border-gray-300 bg-white h-10 px-5 pr-3 rounded-lg text-sm focus:outline-none "
+              >
+                <option value="">Select a customer</option>
+                {customers.map((customer) => (
+                  <option key={customer.mobile} value={customer.mobile}>
+                    {customer.mobile} ({customer.name})
+                  </option>
+                ))}
+              </select>
             </div>
-          ))}
-          <h2 className="text-2xl font-bold mt-2 text-center mt-6">
-            Total: {total.toFixed(0)}/=
-          </h2>
-          <div className="flex justify-center">
+
             <button
               onClick={handleSell}
-              className="mt-3 px-4 py-2 text-white bg-blue-500 rounded-md"
+              disabled={!referenceName || cart.length === 0} // Disable the button when referenceName is empty or there are no items in the cart
+              className={` px-4 py-2 text-white rounded-md ${
+                !referenceName || cart.length === 0
+                  ? "bg-gray-500"
+                  : "bg-blue-500"
+              }`}
             >
               Sell
             </button>

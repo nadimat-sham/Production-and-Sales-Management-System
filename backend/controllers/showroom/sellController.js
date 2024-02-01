@@ -1,16 +1,25 @@
 const Product = require("../../models/showroom/productModel");
 const Sell = require("../../models/showroom/sellModel"); // Import the Sell model
+const Customer = require("../../models/showroom/customerModel");
 const mongoose = require("mongoose");
 
 // sell products
 
 const sellProducts = async (req, res) => {
-  const soldProducts = req.body;
+  console.log(req.body);
+  const { cart, referenceName } = req.body;
+  const soldProducts = cart;
+  const mobile = referenceName;
   console.log("beginning");
   console.log(soldProducts);
   console.log("ending");
   try {
-    const sell = new Sell({ soldProducts: [] });
+    const customer = await Customer.findOne({ mobile: mobile });
+    const sell = new Sell({
+      soldProducts: [],
+      name: customer.name,
+      mobile: customer.mobile,
+    });
     console.log(soldProducts.length + "length");
     for (const item of soldProducts) {
       const product = await Product.findById(item.product._id);
@@ -39,7 +48,7 @@ const sellProducts = async (req, res) => {
       await product.save();
     }
     console.log("erererer");
-    // console.log(sell);
+    console.log(sell);
     await sell.save();
     console.log("eedssssssssssssssss");
 

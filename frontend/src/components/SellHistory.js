@@ -10,9 +10,22 @@ const SellHistory = ({ sellRecord }) => {
         <div className="tracking-wide text-indigo-500 font-semibold">
           ID: {sellRecord._id}
         </div>
-        <p className="mt-2 text-gray-500">
-          Date: {new Date(sellRecord.createdAt).toLocaleDateString("en-GB")}
-        </p>
+        <div className="flex gap-5">
+          <p className="mt-2 text-gray-500">
+            Date: {new Date(sellRecord.createdAt).toLocaleDateString("en-GB")}
+          </p>
+          <p className="mt-2 text-gray-500">
+            Time:{" "}
+            {new Date(sellRecord.createdAt).toLocaleString("en-GB", {
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hour12: false,
+            })}
+          </p>
+        </div>
+        <p className="mt-2 text-gray-500">Buyer: {sellRecord.name}</p>
+        <p className="mt-2 text-gray-500">Mobile: {sellRecord.mobile}</p>
         {/* <div className="mt-6 uppercase tracking-wide text-sm  font-semibold">
           Items:
         </div> */}
