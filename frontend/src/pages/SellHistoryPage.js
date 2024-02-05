@@ -31,7 +31,7 @@ const SellHistoryPage = () => {
         return record.mobile ? record.mobile.startsWith(searchTerm) : false;
       case "date":
         if (record.createdAt) {
-          const date = new Date(record.createdAt);
+          const date = new Date(record.createdAt); 
           const formattedDate = `${date.getDate()}/${
             date.getMonth() + 1
           }/${date.getFullYear()}`;
@@ -55,7 +55,15 @@ const SellHistoryPage = () => {
 
   return (
     <div>
-      <div className="py-4 flex justify-end items-center">
+      <div className="fixed w-[1200px]">
+      <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="ml-4 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+        />
         <select
           value={searchType}
           onChange={(e) => setSearchType(e.target.value)}
@@ -65,19 +73,15 @@ const SellHistoryPage = () => {
           <option value="date">Date</option>
           <option value="product">Product</option>
         </select>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={handleSearch}
-          className="ml-4 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-        />
       </div>
+      </div>
+      <div className="pt-16">
       {filteredSellHistory
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map((record, index) => (
           <SellHistory key={index} sellRecord={record} />
         ))}
+      </div>
     </div>
   );
 };

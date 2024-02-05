@@ -41,7 +41,7 @@ const Products = () => {
       ) : (
         <>
           <div className="fixed w-[1200px]">
-            <div className=" py-4 bg-white pr-[100px] flex justify-end gap-10 mr-0 items-center ml-[0px] bg-opacity-90">
+            <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
               <input
                 type="text"
                 placeholder="Search..."
