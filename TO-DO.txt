@@ -1,0 +1,29 @@
+# I am working on employee add and delete both backed and frontend  --- mijan
+
+
+
+
+Employee Module:
+    1. Employee Add
+    2. Employee delete
+    3. Employee Accounts
+    4. Attendance record
+    5. Performance measure
+
+    Table:
+        1. employee      
+            name: ,
+            position: ,
+            email: ,
+            phone: ,
+            address: ,
+            salary: ,
+            hireDate:
+
+        2. Attendance table
+            
+        3. Performance table
+
+        4. 
+
+    
