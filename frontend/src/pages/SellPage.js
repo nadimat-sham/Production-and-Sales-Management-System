@@ -71,8 +71,8 @@ const Products = () => {
   return (
     <div className="Product grid grid-cols-5 gap-4 mt-0 ">
       <div className="col-span-3">
-        <div className=" fixed w-2/5 bg-white bg-opacity-90">
-          <div className="py-4 flex justify-end items-center">
+        <div className=" fixed w-[1200px]">
+        <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
             <input
               type="text"
               placeholder="Search..."

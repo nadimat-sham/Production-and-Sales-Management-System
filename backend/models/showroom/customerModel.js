@@ -20,6 +20,12 @@ const customerSchema = new Schema(
       type: String,
       required: true,
     },
+    purchases: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Sell",
+      },
+    ],
   },
   { timestamps: true }
 );
