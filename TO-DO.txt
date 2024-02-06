@@ -8,6 +8,7 @@ Employee Module:
     # Employee Add
     # Employee delete
     # Employee Update
+    # Employee Search
     # Employee Accounts
     # Attendance record
     # Performance measure
