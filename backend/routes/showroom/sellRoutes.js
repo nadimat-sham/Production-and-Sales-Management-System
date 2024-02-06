@@ -2,6 +2,7 @@ const express = require("express");
 const {
   sellProducts,
   sellHistory,
+  sellDelete,
 } = require("../../controllers/showroom/sellController");
 
 const router = express.Router();
@@ -10,6 +11,9 @@ const router = express.Router();
 router.post("/sell", sellProducts);
 
 // GET sell history
-router.get("/", sellHistory);
+router.get("/history/sell", sellHistory);
+
+//delete sell history
+router.delete("/history/sell/:id", sellDelete)
 
 module.exports = router;

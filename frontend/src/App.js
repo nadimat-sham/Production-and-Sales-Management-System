@@ -7,6 +7,8 @@ import SellHistory from "./pages/SellHistoryPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Customers from "./pages/CustomersPage";
 import CustomersSellHistory from "./components/CustomersSellHistory";
+import Order from "./pages/OrderPage"
+import OrderHistory from "./pages/OrderHistoryPage";
 
 //Employees
 import EmployeePage from "./pages/EmployeePage"
@@ -30,6 +32,8 @@ function App() {
                 <Route path="/sell-history" element={<SellHistory />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/customers/:id" element={<CustomersSellHistory />} />
+                <Route path="/order" element={<Order />} />
+                <Route path="/order-history" element={<OrderHistory />} />
                 <Route path="/employees" element={<EmployeePage/>} />
                 <Route path="/employees/add" element={<AddEmployee/>} />
               </Routes>
