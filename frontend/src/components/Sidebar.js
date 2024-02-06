@@ -13,32 +13,37 @@ const Sidebar = () => {
         </Link>
 
         <div className="text-white text-lg ">
-          <div>
-            <Link to="/products" className="w-full py-2 px-4 hover:bg-gray-700">
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/products" >
               Products
             </Link>
           </div>
-          <div>
-            <Link
-              to="/customers"
-              className="w-full py-2 px-4 hover:bg-gray-700"
-            >
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/customers">
               Customers
             </Link>
           </div>
-          <div>
-            <Link to="/sell" className="w-full py-2 px-4 hover:bg-gray-700">
+
+          <div  className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/sell">
               Sell
             </Link>
           </div>
-          <div>
-            <Link
-              to="/sell-history"
-              className="w-full py-2 px-4 hover:bg-gray-700"
-            >
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/sell-history">
               Sell History
             </Link>
           </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employees" >
+              Employees
+            </Link>
+          </div>
+
         </div>
       </div>
       {/* <div className="flex-grow p-4">{renderComponent()}</div> */}

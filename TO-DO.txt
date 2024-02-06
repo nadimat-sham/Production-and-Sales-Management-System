@@ -4,11 +4,12 @@
 
 
 Employee Module:
-    1. Employee Add
-    2. Employee delete
-    3. Employee Accounts
-    4. Attendance record
-    5. Performance measure
+    # Employee Add
+    # Employee delete
+    # Employee Update
+    # Employee Accounts
+    # Attendance record
+    # Performance measure
 
     Table:
         1. employee      

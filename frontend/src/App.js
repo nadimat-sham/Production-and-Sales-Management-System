@@ -8,6 +8,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Customers from "./pages/CustomersPage";
 import CustomersSellHistory from "./components/CustomersSellHistory";
 
+//Employees
+import EmployeePage from "./pages/EmployeePage"
+import AddEmployee from "./components/AddEmployee";
+
 function App() {
   return (
     <div className="App">
@@ -26,6 +30,8 @@ function App() {
                 <Route path="/sell-history" element={<SellHistory />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/customers/:id" element={<CustomersSellHistory />} />
+                <Route path="/employees" element={<EmployeePage/>} />
+                <Route path="/employees/add" element={<AddEmployee/>} />
               </Routes>
             </div>
           </div>
