@@ -25,6 +25,11 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
+    ordered: {
+      type: Number,
+      required: false,
+      default: 0,
+    }
   },
   { timestamps: true }
 );

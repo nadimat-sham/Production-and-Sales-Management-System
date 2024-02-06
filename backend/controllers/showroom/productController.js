@@ -41,6 +41,8 @@ const createProduct = async (req, res) => {
   }
 };
 
+
+/*
 // sell products
 
 const sellProducts = async (req, res) => {
@@ -94,6 +96,8 @@ const sellHistory = async (req, res) => {
   }
 };
 
+*/
+
 // delete a product
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
@@ -141,6 +145,4 @@ module.exports = {
   createProduct,
   deleteProduct,
   updateProduct,
-  sellProducts,
-  sellHistory,
 };

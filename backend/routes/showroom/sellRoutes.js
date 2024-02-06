@@ -10,6 +10,6 @@ const router = express.Router();
 router.post("/sell", sellProducts);
 
 // GET sell history
-router.get("/", sellHistory);
+router.get("/history/sell", sellHistory);
 
 module.exports = router;
