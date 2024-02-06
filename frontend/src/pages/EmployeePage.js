@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from 'react';
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios';
+
+import AddEmployee from '../components/AddEmployee'
+import Employee from '../components/Employee';
+import EmployeeSearch from '../components/employeeSearch';
+
+
+const EmployeePage = () => {
+  const [employees, setEmployees] = useState([]);
+  const navigate = useNavigate()
+  const [addAnEmployee, setAddAnEmployee] = useState(false)
+  
+  useEffect(() => {
+    axios.get('/employees')
+      .then(response => {
+        setEmployees(response.data);
+        console.log(employees)
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [employees]);
+
+  const handleAddEmployee = () =>{
+    setAddAnEmployee(true)
+  }
+  return (
+    
+    <div className="container mx-auto">
+      {
+        addAnEmployee ?
+
+         (<AddEmployee employees={employees} setEmployees={setEmployees} setAddAnEmployee={setAddAnEmployee}/>)
+          
+          :
+
+
+          (
+            <div>
+              <div>
+                <EmployeeSearch/>
+              </div>
+
+              <div>
+                <button
+                  type="button"
+                  onClick={handleAddEmployee}
+                  className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+                >
+                  Add Employee
+                </button>
+              </div>
+
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Employee List</h2>
+                {
+                  employees.map(employee => (
+                    <Employee employee = {employee} employees={employees} setEmployees={setEmployees}/>
+                  ))
+                }
+              </div>
+            </div>
+          )
+      }
+      
+    </div>
+  );
+};
+
+export default EmployeePage;
