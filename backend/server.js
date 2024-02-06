@@ -6,6 +6,9 @@ const showRoomProductRoutes = require("./routes/showroom/productRoutes");
 const sellRoutes = require("./routes/showroom/sellRoutes");
 const customerRoutes = require("./routes/showroom/customerRoutes");
 
+
+const employeeRoutes = require("./routes/employee/employeeRoutes")
+
 // express app
 const app = express();
 
@@ -18,11 +21,17 @@ app.use((req, res, next) => {
 });
 
 // routes
+
+//Showroom routes
 app.use("/showroom/products", showRoomProductRoutes);
 app.use("/showroom/sells", sellRoutes);
 app.use("/showroom/customers", customerRoutes);
 
+//Employee routes
+app.use("/employees", employeeRoutes)
+
 // connect to db
+console.log("Here")
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
