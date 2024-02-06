@@ -32,11 +32,24 @@ const Sidebar = () => {
             </Link>
           </div>
           <div>
+            <Link to="/order" className="w-full py-2 px-4 hover:bg-gray-700">
+              Order
+            </Link>
+          </div>
+          <div>
             <Link
               to="/sell-history"
               className="w-full py-2 px-4 hover:bg-gray-700"
             >
               Sell History
+            </Link>
+          </div>
+          <div>
+            <Link
+              to="/order-history"
+              className="w-full py-2 px-4 hover:bg-gray-700"
+            >
+              Order History
             </Link>
           </div>
         </div>

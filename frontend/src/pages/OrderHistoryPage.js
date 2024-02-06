@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import SellHistory from "../components/SellHistory";
+import OrderHistory from "../components/OrderHistory";
 
-const SellHistoryPage = () => {
-  const [sellHistory, setSellHistory] = useState([]);
+const OrderHistoryPage = () => {
+  const [orderHistory, setOrderHistory] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchType, setSearchType] = useState("mobile"); // New state variable for search type
+  const [searchType, setSearchType] = useState("product"); // New state variable for search type
 
   useEffect(() => {
-    const fetchSellHistory = async () => {
+    const fetchOrderHistory = async () => {
       try {
-        const response = await axios.get("showroom/sells/history/sell");
-        setSellHistory(response.data);
+        const response = await axios.get("showroom/orders/history/order");
+        setOrderHistory(response.data);
         console.log(response.data);
       } catch (error) {
-        console.error("Error fetching sell history:", error);
+        console.error("Error fetching order history:", error);
       }
     };
 
-    fetchSellHistory();
+    fetchOrderHistory();
   }, []);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const filteredSellHistory = sellHistory.filter((record) => {
+  const filteredOrderHistory = orderHistory.filter((record) => {
     switch (searchType) {
-      case "mobile":
-        return record.mobile ? record.mobile.startsWith(searchTerm) : false;
       case "date":
         if (record.createdAt) {
           const date = new Date(record.createdAt); 
@@ -39,10 +37,10 @@ const SellHistoryPage = () => {
         }
         return false;
       case "product":
-        return record.soldProducts
-          ? record.soldProducts.some((soldProduct) =>
-              soldProduct.product.name
-                ? soldProduct.product.name
+        return record.orderedProducts
+          ? record.orderedProducts.some((orderedProduct) =>
+          orderedProduct.product.name
+                ? orderedProduct.product.name
                     .toLowerCase()
                     .startsWith(searchTerm.toLowerCase())
                 : false
@@ -69,21 +67,20 @@ const SellHistoryPage = () => {
           onChange={(e) => setSearchType(e.target.value)}
           className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
         >
-          <option value="mobile">Mobile</option>
           <option value="date">Date</option>
           <option value="product">Product</option>
         </select>
       </div>
       </div>
       <div className="pt-16">
-      {filteredSellHistory
+      {filteredOrderHistory
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map((record, index) => (
-          <SellHistory key={index} sellRecord={record} />
+          <OrderHistory key={index} orderRecord={record} />
         ))}
       </div>
     </div>
   );
 };
 
-export default SellHistoryPage;
+export default OrderHistoryPage;

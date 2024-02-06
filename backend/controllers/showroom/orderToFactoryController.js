@@ -3,7 +3,7 @@ const Order = require("../../models/showroom/orderToFactoryModel"); // Import th
 //const Customer = require("../../models/showroom/customerModel");
 const mongoose = require("mongoose");
 
-// sell products
+// order products
 
 const orderProducts = async (req, res) => {
   console.log(req.body);
@@ -66,7 +66,24 @@ const orderHistory = async (req, res) => {
   }
 };
 
+// delete an order
+const orderDelete = async (req,res)=>{
+  const id = req.params.id;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid id' });
+  }
+
+  const single = await Order.findByIdAndDelete(id);
+  
+  if (!single) {
+    return res.status(404).json({ error: 'Entry not found' });
+  }
+  res.status(200).json(single);
+};
+
 module.exports = {
   orderProducts,
   orderHistory,
+  orderDelete,
 };
