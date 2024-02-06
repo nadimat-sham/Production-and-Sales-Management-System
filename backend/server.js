@@ -33,7 +33,7 @@ app.use("/showroom/orders", orderRoutes);
 app.use("/employees", employeeRoutes)
 
 // connect to db
-console.log("Here")
+console.log("Heree")
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
