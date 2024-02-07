@@ -1,9 +1,15 @@
+import { useEffect } from "react";
 
 const EmployeeSearch = ({setSearchTerm, setSelectedOption}) => {
 
   const options = ['Name', 'Position', 'Email', 'Phone'];
 
-  setSelectedOption('Name')
+  
+  useEffect(()=>{
+    
+    setSelectedOption('Name')
+
+  },[])
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
@@ -27,9 +33,7 @@ const EmployeeSearch = ({setSearchTerm, setSelectedOption}) => {
               className="appearance-none bg-white border border-gray-400 px-4 py-2 rounded shadow"
             >
               
-              <option value="" disabled hidden>
-                Search by
-              </option>
+              
               {options.map(option => (
                 <option key={option} value={option}>{option}</option>
               ))}
