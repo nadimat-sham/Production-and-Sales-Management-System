@@ -13,6 +13,7 @@ import OrderHistory from "./pages/OrderHistoryPage";
 //Employees
 import EmployeePage from "./pages/EmployeePage"
 import AddEmployee from "./components/AddEmployee";
+import UpdateEmployeeForm from "./components/UpdateEmployee";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/order" element={<Order />} />
                 <Route path="/order-history" element={<OrderHistory />} />
                 <Route path="/employees" element={<EmployeePage/>} />
+                <Route path="/employees/:id" element={<UpdateEmployeeForm/>} />
                 <Route path="/employees/add" element={<AddEmployee/>} />
               </Routes>
             </div>

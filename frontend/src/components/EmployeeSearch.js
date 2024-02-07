@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const EmployeeSearch = ({setSearchTerm, setSelectedOption}) => {
 
-  const options = ['Name', 'Position', 'Email', 'Phone'];
+  const options = ['Name', 'Position', 'Email', 'Phone', 'Address'];
 
   
   useEffect(()=>{

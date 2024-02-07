@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 import AddEmployee from '../components/AddEmployee'
 import Employee from '../components/Employee';
-import EmployeeSearch from '../components/employeeSearch';
+import EmployeeSearch from '../components/EmployeeSearch';
 
 
 const EmployeePage = () => {
   const [employees, setEmployees] = useState([]);
-  const navigate = useNavigate()
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -67,7 +65,8 @@ const EmployeePage = () => {
                      ((selectedOption==="Name" && employee.name.includes(searchTerm)) || 
                       (selectedOption==="Email" && employee.email.includes(searchTerm)) ||
                       (selectedOption==="Phone" && employee.phone.includes(searchTerm)) ||
-                      (selectedOption==="Position" && employee.position.includes(searchTerm))
+                      (selectedOption==="Position" && employee.position.includes(searchTerm)) ||
+                      (selectedOption==="Address" && employee.address.includes(searchTerm))
                      )
                       && <Employee employee = {employee} employees={employees} setEmployees={setEmployees}/>
                   ))  

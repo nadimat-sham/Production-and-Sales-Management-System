@@ -75,6 +75,7 @@ const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
           type="tel"
           onChange={e => setPhone(e.target.value)}
           className="border border-gray-400 p-2 rounded mb-2 w-full"
+          required
         />
 
         <label className="mb-2 block"><span className='text-red-600'>* </span>Salary:</label>
@@ -82,22 +83,20 @@ const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
           type="number"
           onChange={e => setSalary(e.target.value)}
           required
-          className="border border-gray-400p-2 rounded mb-2 w-full"
+          className="border border-gray-400 p-2 rounded mb-2 w-full"
         />
 
         <label className="mb-2 block">Address:</label>
         <input
           type="text"
           onChange={e => setAdress(e.target.value)}
-          required
-          className="border border-gray-400p-2 rounded mb-2 w-full"
+          className="border border-gray-400 p-2 rounded mb-2 w-full"
         />
 
         <label className="mb-2 block">Hire Date:</label>
         <input
-          type="date"
+          type="datetime-local"
           onChange={e => setHireDate(e.target.value)}
-          required
           className="border border-gray-400 p-2 rounded mb-2 w-full"
         />
 

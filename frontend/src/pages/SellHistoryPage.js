@@ -49,6 +49,7 @@ const SellHistoryPage = () => {
             )
           : false;
         break;
+        default:
       // Add more cases as needed
     }
 
