@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
 
-const EmployeeSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+const EmployeeSearch = ({setSearchTerm, setSelectedOption}) => {
 
-  const handleSearch = () => {
-    axios.get(`/employees?search=${searchTerm}`)
-      .then(response => {
-        setSearchResults(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  const options = ['Name', 'Position', 'Email', 'Phone'];
+
+  setSelectedOption('Name')
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
   };
+
 
   return (
     <div className="container mx-auto">
@@ -21,29 +16,29 @@ const EmployeeSearch = () => {
       <div className="flex mb-4">
         <input
           type="text"
-          value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           className="border border-gray-400 p-2 rounded-l w-full"
         />
-        <button
-          type="button"
-          onClick={handleSearch}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r"
-        >
-          Search
-        </button>
+        
+        
+        <div>
+            <select
+              onChange={handleChange}
+              className="appearance-none bg-white border border-gray-400 px-4 py-2 rounded shadow"
+            >
+              
+              <option value="" disabled hidden>
+                Search by
+              </option>
+              {options.map(option => (
+                <option key={option} value={option}>{option}</option>
+              ))}
+            </select>
+        </div>
+
+
       </div>
       
-      {searchResults.map(employee => (
-        <div key={employee._id} className="bg-gray-100 rounded p-4 mb-4">
-          <h3 className="text-xl font-bold mb-2">{employee.name}</h3>
-          <p className="mb-2">Position: {employee.position}</p>
-          <p className="mb-2">Email: {employee.email}</p>
-          <p className="mb-2">Phone: {employee.phone}</p>
-          <p className="mb-2">Salary: ${employee.salary}</p>
-          <p className="mb-2">Hire Date: {employee.hireDate}</p>
-        </div>
-      ))}
       
     </div>
   );

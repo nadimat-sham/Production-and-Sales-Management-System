@@ -10,7 +10,12 @@ import EmployeeSearch from '../components/employeeSearch';
 const EmployeePage = () => {
   const [employees, setEmployees] = useState([]);
   const navigate = useNavigate()
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
+
   const [addAnEmployee, setAddAnEmployee] = useState(false)
+
+  console.log(searchTerm, selectedOption)
   
   useEffect(() => {
     axios.get('/employees')
@@ -40,7 +45,7 @@ const EmployeePage = () => {
           (
             <div>
               <div>
-                <EmployeeSearch/>
+                <EmployeeSearch setSearchTerm={setSearchTerm} setSelectedOption={setSelectedOption}/>
               </div>
 
               <div>
@@ -57,8 +62,15 @@ const EmployeePage = () => {
                 <h2 className="text-2xl font-bold mb-4">Employee List</h2>
                 {
                   employees.map(employee => (
-                    <Employee employee = {employee} employees={employees} setEmployees={setEmployees}/>
-                  ))
+                     searchTerm===''? <Employee employee = {employee} employees={employees} setEmployees={setEmployees}/>
+                     :
+                     ((selectedOption==="Name" && employee.name.includes(searchTerm)) || 
+                      (selectedOption==="Email" && employee.email.includes(searchTerm)) ||
+                      (selectedOption==="Phone" && employee.phone.includes(searchTerm)) ||
+                      (selectedOption==="Position" && employee.position.includes(searchTerm))
+                     )
+                      && <Employee employee = {employee} employees={employees} setEmployees={setEmployees}/>
+                  ))  
                 }
               </div>
             </div>
