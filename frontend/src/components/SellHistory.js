@@ -41,6 +41,7 @@ const SellHistory = ({ sellRecord }) => {
           </thead>
           <tbody>
             {sellRecord.soldProducts.map((soldProduct, index) => {
+              if (!soldProduct.product) return null;
               const totalAmount =
                 soldProduct.quantity * soldProduct.product.price;
               totalSum += totalAmount;

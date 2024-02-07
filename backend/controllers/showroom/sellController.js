@@ -45,10 +45,10 @@ const sellProducts = async (req, res) => {
       };
       console.log(now, " now is here");
       sell.soldProducts.push(now);
-      customer.purchases.push(sell);
-      await customer.save();
       await product.save();
     }
+    customer.purchases.push(sell);
+    await customer.save();
     console.log("erererer");
     console.log(sell);
     await sell.save();

@@ -3,8 +3,15 @@ const mongoose = require("mongoose");
 
 // get all customers
 const getCustomers = async (req, res) => {
-  const customers = await Customer.find({}).sort({ createdAt: -1 }).populate("purchases");
-
+  const customers = await Customer.find({})
+    .sort({ createdAt: -1 })
+    .populate({
+      path: 'purchases',
+      populate: {
+        path: 'soldProducts.product',
+      },
+    });
+  console.log(JSON.stringify(customers));
   res.status(200).json(customers);
 };
 
