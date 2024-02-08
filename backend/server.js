@@ -9,6 +9,7 @@ const orderRoutes = require("./routes/showroom/orderRoutes")
 
 
 const employeeRoutes = require("./routes/employee/employeeRoutes")
+const employeeAccountRoutes = require("./routes/employee/employeeAccountRoutes")
 
 // express app
 const app = express();
@@ -17,7 +18,7 @@ const app = express();
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log(req.path, req.method);
+  //console.log(req.path, req.method);
   next();
 });
 
@@ -31,9 +32,11 @@ app.use("/showroom/orders", orderRoutes);
 
 //Employee routes
 app.use("/employees", employeeRoutes)
+app.use("/accounts", employeeAccountRoutes)
+
 
 // connect to db
-console.log("Heree")
+console.log("Here")
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {

@@ -6,6 +6,18 @@ const createEmployee = async (req, res) => {
       const employee = await Employee.create(req.body);
       console.log(employee)
       res.status(200).json(employee);
+      
+      console.log(employee._id)
+      console.log("create and save account?")
+      employee.save()
+      .then(savedEmployee => {
+        console.log('Employee saved:', savedEmployee);
+        // The account record for the employee has been automatically created
+      })
+      .catch(error => {
+        console.error('Error saving employee:', error);
+      });
+
     } catch (error) {
       res.status(400).json({ error: 'Failed to create employee' });
     }
@@ -15,7 +27,18 @@ const createEmployee = async (req, res) => {
 const getAllEmployees = async (req, res) => {
   try {
     const employees = await Employee.find();
-    res.json(employees);
+    const searchQuery = req.query.search;
+    let filteredEmployees = employees;
+
+    if (searchQuery) {
+      filteredEmployees = employees.filter(employee => {
+        return ( employee.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                 employee.position.toLowerCase().includes(searchQuery.toLowerCase())
+              );
+      });
+    }
+
+    res.json(filteredEmployees);
   } catch (error) {
     res.status(400).json({ error: 'Failed to retrieve employees' });
   }

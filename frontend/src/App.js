@@ -14,6 +14,7 @@ import OrderHistory from "./pages/OrderHistoryPage";
 import EmployeePage from "./pages/EmployeePage"
 import AddEmployee from "./components/AddEmployee";
 import UpdateEmployeeForm from "./components/UpdateEmployee";
+import EmployeeAccount from "./pages/EmployeeAccountPage";
 
 function App() {
   return (
@@ -36,8 +37,9 @@ function App() {
                 <Route path="/order" element={<Order />} />
                 <Route path="/order-history" element={<OrderHistory />} />
                 <Route path="/employees" element={<EmployeePage/>} />
-                <Route path="/employees/:id" element={<UpdateEmployeeForm/>} />
+                <Route path="/employees/:id/update" element={<UpdateEmployeeForm/>} />
                 <Route path="/employees/add" element={<AddEmployee/>} />
+                <Route path="/accounts" element={<EmployeeAccount/>} />
               </Routes>
             </div>
           </div>

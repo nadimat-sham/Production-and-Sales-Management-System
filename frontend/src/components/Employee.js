@@ -19,7 +19,7 @@ const Employee = ({employee, employees, setEmployees}) => {
   };
 
   const handleUpdate = (employeeId)=>{
-    navigate(`/employees/${employeeId}`)
+    navigate(`/employees/${employeeId}/update`)
   }
 
   return (
