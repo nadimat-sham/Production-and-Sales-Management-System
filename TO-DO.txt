@@ -21,7 +21,7 @@ Employee Module:
             phone: ,
             address: ,
             salary: ,
-            hireDate:
+            hireDate:  
 
         2. Attendance table
             

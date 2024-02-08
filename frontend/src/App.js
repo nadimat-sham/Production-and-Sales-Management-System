@@ -14,6 +14,10 @@ import OrderHistory from "./pages/OrderHistoryPage";
 import EmployeePage from "./pages/EmployeePage"
 import AddEmployee from "./components/AddEmployee";
 import UpdateEmployeeForm from "./components/UpdateEmployee";
+import EmployeeAttendancePage from "./pages/EmployeeAttendancePage"
+import SubmitAttendanceForm from "./components/SubmitAttendanceForm"
+import ViewAttendanceRecords from "./components/ViewAttendanceRecords";
+import SearchAttendanceRecords from "./components/SearchAttendanceRecords";
 
 function App() {
   return (
@@ -38,6 +42,9 @@ function App() {
                 <Route path="/employees" element={<EmployeePage/>} />
                 <Route path="/employees/:id" element={<UpdateEmployeeForm/>} />
                 <Route path="/employees/add" element={<AddEmployee/>} />
+                <Route path="/employeesAttendance" element={<EmployeeAttendancePage/>} />
+                <Route path="/employeesAttendance/add" element={<SubmitAttendanceForm/>} />
+                <Route path="/employeesAttendance/search" element={<ViewAttendanceRecords/>} />
               </Routes>
             </div>
           </div>
