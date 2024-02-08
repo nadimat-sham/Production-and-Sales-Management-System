@@ -48,6 +48,12 @@ const Sidebar = () => {
           <div className="w-full py-2 px-4 hover:bg-gray-700">
             <Link to="/accounts" >
               Accounts
+              </Link>
+          </div> 
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+          <Link to="/employeesAttendance" >
+              Employee Attendance
             </Link>
           </div>
 

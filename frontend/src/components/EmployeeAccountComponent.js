@@ -101,7 +101,7 @@ const EmployeeAccount = ({ employeeId }) => {
                     <div className='font-bold text-center'>Amount</div>
                     {
                         account.history.map(entry=>(
-                            <div className={`${entry.type==="Credited" ? "text-green-700" : "text-red-700"} my-2 text-center`}>{entry.amount}</div>
+                            <div className={`${entry.type==="Credited" ? "text-green-700" : "text-red-700"} my-2 text-center`}>{entry.type==="Credited"?"+":"-"}{entry.amount}</div>
                         )
                         )
                     }

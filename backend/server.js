@@ -7,9 +7,10 @@ const sellRoutes = require("./routes/showroom/sellRoutes");
 const customerRoutes = require("./routes/showroom/customerRoutes");
 const orderRoutes = require("./routes/showroom/orderRoutes")
 
-
 const employeeRoutes = require("./routes/employee/employeeRoutes")
 const employeeAccountRoutes = require("./routes/employee/employeeAccountRoutes")
+const employeeAttendanceRoutes = require('./routes/employee/employeeAttendanceRoutes');
+
 
 // express app
 const app = express();
@@ -34,6 +35,8 @@ app.use("/showroom/orders", orderRoutes);
 app.use("/employees", employeeRoutes)
 app.use("/accounts", employeeAccountRoutes)
 
+//attendance routes
+app.use("/employeesAttendance", employeeAttendanceRoutes)
 
 // connect to db
 console.log("Here")
