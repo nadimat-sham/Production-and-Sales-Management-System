@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
   const [name, setName] = useState('');
+  
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
