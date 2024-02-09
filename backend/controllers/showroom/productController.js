@@ -41,7 +41,6 @@ const createProduct = async (req, res) => {
   }
 };
 
-
 /*
 // sell products
 
@@ -120,23 +119,26 @@ const deleteProduct = async (req, res) => {
 // update a product
 const updateProduct = async (req, res) => {
   const { id } = req.params;
+  const { name, price } = req.body;
+  console.log(name, price);
+  // return;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: "No such product" });
   }
 
-  const product = await Product.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body,
-    }
-  );
+  const product = await Product.findById(id);
 
   if (!product) {
     return res.status(400).json({ error: "No such product" });
   }
 
-  res.status(200).json(product);
+  product.name = name;
+  product.price = price;
+
+  const updatedProduct = await product.save();
+
+  res.status(200).json(updatedProduct);
 };
 
 module.exports = {
