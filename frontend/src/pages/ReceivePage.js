@@ -9,6 +9,8 @@ const ReceivePage = () => {
   const [validationMessageQuantity, setValidationMessageQuantity] =
     useState("Quantity ok");
   const [quantity, setQuantity] = useState(1); // New state variable for quantity
+  const [selectedProduct, setSelectedProduct] = useState(null); // New state variable for selected product
+  const [cart, setCart] = useState([]); // New state variable for cart
 
   useEffect(() => {
     const isValidProduct = products.some(
@@ -52,6 +54,7 @@ const ReceivePage = () => {
     console.log("Selected product:", product);
     console.log(searchTerm);
     setIsFocused(false);
+    setSelectedProduct(product);
   };
   const qauntityOk = "Quantity ok";
   const handleQuantityInput = (quantity) => {
@@ -78,10 +81,52 @@ const ReceivePage = () => {
     };
   }, [wrapperRef]);
 
+  const handleAddToCart = () => {
+    setCart([...cart, { product: selectedProduct, quantity: quantity }]);
+    setSearchTerm("");
+    setQuantity(1);
+    setValidationMessageQuantity("Quantity ok");
+  };
+  //   const handleRemoveFromCart = (productToRemove) => {
+  //     console.log("productToRemove:", productToRemove.name);
+  //     // setCart(
+  //     //   cart.filter((product) => product.product.id !== productToRemove.id)
+  //     // );
+  //   };
+  const handleRemoveFromCart = (indexToRemove) => {
+    const newCart = [...cart];
+    newCart.splice(indexToRemove, 1);
+    setCart(newCart);
+  };
+
+  const handleReceive = async () => {
+    const cartToSend = cart.map((item) => ({
+      product: item.product._id,
+      quantity: item.quantity,
+    }));
+    console.log("cartToSend:", cartToSend);
+    return;
+    try {
+      const response = await fetch("/showroom/receive", {
+        method: "POST",
+        body: JSON.stringify({ cart: cartToSend }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await response.json();
+      console.log(json);
+      window.location.reload();
+    } catch (error) {
+      console.error("Error receiving products:", error);
+    }
+  };
+
+  console.log(cart);
   return (
     <div className="p-4">
       <h1 className="text-3xl mt-8 mb-4">Receive page</h1>
-      <div className="grid grid-cols-7">
+      <div className="grid grid-cols-7 gap-6">
         <div className="col-span-3">
           <div className="flex items-end">
             <div className="relative" ref={wrapperRef}>
@@ -109,7 +154,7 @@ const ReceivePage = () => {
                     <div
                       key={index}
                       onClick={() => handleProductSelect(product)}
-                      className="p-2 cursor-pointer hover:bg-gray-600"
+                      className="p-2 cursor-pointer hover:bg-gray-200"
                     >
                       {product.name}
                     </div>
@@ -138,6 +183,7 @@ const ReceivePage = () => {
           </div>
           <div className="flex justify-center mt-3">
             <button
+              onClick={handleAddToCart}
               disabled={
                 validationMessage !== "ok product is in database" ||
                 validationMessageQuantity !== qauntityOk
@@ -152,6 +198,79 @@ const ReceivePage = () => {
               Add
             </button>
           </div>
+        </div>
+        <div className="col-span-4">
+          <table className="table-auto w-full mt-4 border-collapse border border-gray-300">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 px-4 py-2 text-gray-600">
+                  No.
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-gray-600">
+                  Item
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-gray-600">
+                  Quantity
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-gray-600">
+                  Unit Price
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-gray-600">
+                  Total Amount
+                </th>
+                <th className="border border-gray-300 px-4 py-2 text-gray-600">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item, index) => (
+                <tr key={index}>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {index + 1}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {item.product.name}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {item.quantity}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {item.product.price}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {item.product.price * item.quantity}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    <button
+                      onClick={() => handleRemoveFromCart(index)}
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="mt-4 text-gray-600">
+            Total:{" "}
+            {cart.reduce(
+              (total, item) => total + item.product.price * item.quantity,
+              0
+            )}
+          </div>
+          <button
+            onClick={handleReceive}
+            disabled={cart.length === 0}
+            className={
+              cart.length === 0
+                ? "mt-4 bg-gray-500 text-white font-bold py-2 px-4 rounded"
+                : "mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            }
+          >
+            Receive
+          </button>
         </div>
       </div>
     </div>
