@@ -14,6 +14,6 @@ router.post("/order", orderProducts);
 router.get("/history/order", orderHistory);
 
 //delete order history
-router.delete("/history/order/:id", orderDelete)
+router.delete("/history/order/:id", orderDelete);
 
 module.exports = router;

@@ -1,6 +1,8 @@
 import AddProduct from "./components/AddProduct";
 import Sidebar from "./components/Sidebar";
 import Products from "./pages/ProductsPage";
+import FactoryProducts from "./pages/FactoryProductsPage";
+import FactoryRawmaterials from "./pages/FactoryRawmaterialsPage";
 import Home from "./pages/HomePage";
 import Sell from "./pages/SellPage";
 import SellHistory from "./pages/SellHistoryPage";
@@ -37,6 +39,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
+                <Route path="/factory/rawmaterials" element={<FactoryRawmaterials />} />
+                <Route path="/factory/products" element={<FactoryProducts />} />
                 <Route path="/add-product" element={<AddProduct />} />
                 <Route path="/sell" element={<Sell />} />
                 <Route path="/sell-history" element={<SellHistory />} />

@@ -9,18 +9,12 @@ const orderProducts = async (req, res) => {
   console.log(req.body);
   const { orderCart } = req.body;
   const orderedProducts = orderCart;
-  // console.log("beginning");
-  // console.log(soldProducts);
-  // console.log("ending");
   try {
-    //const customer = await Customer.findOne({ mobile: mobile });
     const order = new Order({
       orderedProducts: []
     });
-    //console.log(soldProducts.length + "length");
     for (const item of orderedProducts) {
       const product = await Product.findById(item.product._id);
-      //console.log(product + "product");
 
       if (!product) {
         return res
@@ -35,16 +29,9 @@ const orderProducts = async (req, res) => {
         product: product,
         quantity: item.quantity,
       };
-      //console.log(now, " now is here");
       order.orderedProducts.push(now);
-      //customer.purchases.push(sell);
-      //await customer.save();
       await product.save();
     }
-    // console.log("erererer");
-    // console.log(sell);
-    // await sell.save();
-    // console.log("eedssssssssssssssss");
     await order.save();
 
     res.status(200).json({ message: "Products ordered successfully" });

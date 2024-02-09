@@ -158,26 +158,26 @@ const Sidebar = () => {
           {isFactoryManagementOpen && (
             <>
               <div className="w-full py-2 px-4 hover:bg-gray-700">
-                <Link to="/" className="block w-full h-full">
+                <Link to="/factory/rawmaterials" className="block w-full h-full">
                   Raw Materials
                 </Link>
               </div>
 
               <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/factory/products" className="block w-full h-full">
+                  Products
+                </Link>
+              </div>
+
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
                 <Link to="/" className="block w-full h-full">
-                  Receive Raw Materials
+                  Purchase Raw Materials
                 </Link>
               </div>
 
               <div className="w-full py-2 px-4 hover:bg-gray-700">
                 <Link to="/" className="block w-full h-full">
                   Use Raw Materials
-                </Link>
-              </div>
-
-              <div className="w-full py-2 px-4 hover:bg-gray-700">
-                <Link to="/" className="block w-full h-full">
-                  Products
                 </Link>
               </div>
 
@@ -196,6 +196,30 @@ const Sidebar = () => {
               <div className="w-full py-2 px-4 hover:bg-gray-700">
                 <Link to="/order-history" className="block w-full h-full">
                   Order List
+                </Link>
+              </div>
+
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/" className="block w-full h-full">
+                  Purchase Raw Materials History
+                </Link>
+              </div>
+
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/" className="block w-full h-full">
+                  Use Raw Materials History
+                </Link>
+              </div>
+
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/" className="block w-full h-full">
+                  Produce History
+                </Link>
+              </div>
+
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/" className="block w-full h-full">
+                  Send product to showroom History
                 </Link>
               </div>
             </>

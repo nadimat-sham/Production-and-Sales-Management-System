@@ -8,6 +8,9 @@ const customerRoutes = require("./routes/showroom/customerRoutes");
 const orderRoutes = require("./routes/showroom/orderRoutes");
 const receiveRoutes = require("./routes/showroom/receiveRoutes");
 
+const factoryProductRoutes = require("./routes/factory/productRoutes");
+const factoryRawmaterialRoutes = require("./routes/factory/rawmaterialRoutes");
+
 const employeeRoutes = require("./routes/employee/employeeRoutes");
 const employeeAccountRoutes = require("./routes/employee/employeeAccountRoutes");
 const employeeAttendanceRoutes = require("./routes/employee/employeeAttendanceRoutes");
@@ -32,6 +35,9 @@ app.use("/showroom/sells", sellRoutes);
 app.use("/showroom/customers", customerRoutes);
 app.use("/showroom/orders", orderRoutes);
 app.use("/showroom/receives", receiveRoutes);
+
+app.use("/factory/products", factoryProductRoutes);
+app.use("/factory/rawmaterials", factoryRawmaterialRoutes);
 
 //Employee routes
 app.use("/employees", employeeRoutes);
