@@ -62,25 +62,6 @@ const Sidebar = () => {
                   Receive
                 </Link>
               </div>
-            </>
-          )}
-
-          <div
-            className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
-            onClick={() => {
-              setIsHistoryOpen(!isHistoryOpen);
-              if (isOpen) setIsOpen(!isOpen);
-              if (isEmployeeManagementOpen)
-                setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
-              if (isFactoryManagementOpen)
-                setIsFactoryManagementOpen(!isFactoryManagementOpen);
-            }}
-          >
-            History
-          </div>
-
-          {isHistoryOpen && (
-            <>
               <div className="w-full py-2 px-4 hover:bg-gray-700">
                 <Link to="/sell-history" className="block w-full h-full">
                   Sell History
@@ -100,6 +81,22 @@ const Sidebar = () => {
               </div>
             </>
           )}
+
+          {/* <div
+            className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
+            onClick={() => {
+              setIsHistoryOpen(!isHistoryOpen);
+              if (isOpen) setIsOpen(!isOpen);
+              if (isEmployeeManagementOpen)
+                setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
+              if (isFactoryManagementOpen)
+                setIsFactoryManagementOpen(!isFactoryManagementOpen);
+            }}
+          >
+            History
+          </div> */}
+
+          {isHistoryOpen && <></>}
 
           <div
             className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
