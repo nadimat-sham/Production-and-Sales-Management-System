@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
   const [name, setName] = useState('');
-  
+  const [username, setUsername] = useState('');
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -14,6 +14,7 @@ const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
   const handleAddEmployee = () => {
     const newEmployee = {
       name,
+      username,
       position,
       email,
       phone,
@@ -26,6 +27,7 @@ const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
       .then(response => {
         console.log(response.data);
         setName('');
+        setUsername('');
         setPosition('');
         setEmail('');
         setPhone('');
@@ -52,6 +54,14 @@ const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
         <input
           type="text"
           onChange={e => setName(e.target.value)}
+          required
+          className="border border-gray-400 p-2 rounded mb-2 w-full"
+        />
+
+        <label className="mb-2 block"><span className='text-red-600'>* </span>User Name:</label>
+        <input
+          type="text"
+          onChange={e => setUsername(e.target.value)}
           required
           className="border border-gray-400 p-2 rounded mb-2 w-full"
         />

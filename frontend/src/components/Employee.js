@@ -24,14 +24,15 @@ const Employee = ({employee, employees, setEmployees}) => {
 
   return (
   
-        <div key={employee._id} className="bg-gray-100 rounded p-4 mb-4">
-          <h3 className="text-xl font-bold mb-2">{employee.name}</h3>
-          <p className="mb-2">Position: {employee.position}</p>
-          <p className="mb-2">Email: {employee.email}</p>
-          <p className="mb-2">Phone: {employee.phone}</p>
-          <p className="mb-2">Salary: {employee.salary}</p>
-          <p className="mb-2">Address: {employee.address}</p>
-          <p className="mb-2">Hire Date: {
+        <div key={employee._id} className=" rounded-xl shadow-lg p-4 mb-4">
+          <h3 className="text-xl font-bold my-4">{employee.name}</h3>
+          <h3 className="text-lg font-bold my-4">{employee.username}</h3>
+          <p className="my-4"><span className='font-bold mr-4'>Position:</span> {employee.position}</p>
+          <p className="my-4"><span className='font-bold mr-4'>Email:</span> {employee.email}</p>
+          <p className="my-4"><span className='font-bold mr-4'>Phone:</span> {employee.phone}</p>
+          <p className="my-4"><span className='font-bold mr-4'>Salary:</span> {employee.salary}</p>
+          <p className="my-4"><span className='font-bold mr-4'>Address:</span> {employee.address}</p>
+          <p className="my-4"><span className='font-bold mr-4'>Hire Date:</span> {
           
           new Date(employee.hireDate).toLocaleString('en-US',{
                 day: 'numeric',

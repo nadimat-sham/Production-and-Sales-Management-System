@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const EmployeeSearch = ({setSearchTerm, setSelectedOption}) => {
 
-  const options = ['Name', 'Position', 'Email', 'Phone', 'Address'];
+  const options = ['Name', 'Position', 'Email', 'Phone', 'Address', 'UserName'];
 
   
   useEffect(()=>{
@@ -19,11 +19,11 @@ const EmployeeSearch = ({setSearchTerm, setSelectedOption}) => {
   return (
     <div className="container mx-auto">
       <h2 className="text-2xl font-bold mb-4">Employee Search</h2>
-      <div className="flex mb-4">
+      <div className="flex mb-4 mr-100">
         <input
           type="text"
           onChange={e => setSearchTerm(e.target.value)}
-          className="border border-gray-400 p-2 rounded-l w-full"
+          className="border border-gray-400 p-2 rounded-l"
         />
         
         

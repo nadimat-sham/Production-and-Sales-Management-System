@@ -24,7 +24,7 @@ const EmployeePage = () => {
       .catch(error => {
         console.log(error);
       });
-  }, [employees]);
+  }, []);
 
   const handleAddEmployee = () =>{
     setAddAnEmployee(true)
@@ -57,7 +57,7 @@ const EmployeePage = () => {
               </div>
 
               <div>
-                <h2 className="text-2xl font-bold mb-4">Employee List</h2>
+                <h2 className="text-2xl font-bold my-4">Employee List</h2>
                 {
                   employees.map(employee => (
                      searchTerm===''? <Employee employee = {employee} employees={employees} setEmployees={setEmployees}/>
@@ -66,7 +66,8 @@ const EmployeePage = () => {
                       (selectedOption==="Email" && employee.email.includes(searchTerm)) ||
                       (selectedOption==="Phone" && employee.phone.includes(searchTerm)) ||
                       (selectedOption==="Position" && employee.position.includes(searchTerm)) ||
-                      (selectedOption==="Address" && employee.address.includes(searchTerm))
+                      (selectedOption==="Address" && employee.address.includes(searchTerm)) ||
+                      (selectedOption==="UserName" && employee.username.includes(searchTerm))
                      )
                       && <Employee employee = {employee} employees={employees} setEmployees={setEmployees}/>
                   ))  
