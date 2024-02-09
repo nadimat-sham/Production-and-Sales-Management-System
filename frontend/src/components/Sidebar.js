@@ -13,66 +13,45 @@ const Sidebar = () => {
         </Link>
 
         <div className="text-white text-lg ">
-
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/products" >
-              Products
-            </Link>
+            <Link to="/products">Products</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/customers">
-              Customers
-            </Link>
-          </div>
-
-          <div  className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/sell">
-              Sell
-            </Link>
-          </div>
-
-
-          <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/order" >
-              Order
-            </Link>
+            <Link to="/customers">Customers</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/employees" >
-              Employees
-            </Link>
+            <Link to="/sell">Sell</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/accounts" >
-              Accounts
-              </Link>
-          </div> 
-
-          <div className="w-full py-2 px-4 hover:bg-gray-700">
-          <Link to="/employeesAttendance" >
-              Employee Attendance
-            </Link>
+            <Link to="/order">Order</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link
-              to="/sell-history"
-            >
-              Sell History
-            </Link>
+            <Link to="/employees">Employees</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link
-              to="/order-history"
-            >
-              Order History
-            </Link>
+            <Link to="/accounts">Accounts</Link>
           </div>
 
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employeesAttendance">Employee Attendance</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/sell-history">Sell History</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/order-history">Order History</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/products/receive">Receive Products</Link>
+          </div>
         </div>
       </div>
       {/* <div className="flex-grow p-4">{renderComponent()}</div> */}
