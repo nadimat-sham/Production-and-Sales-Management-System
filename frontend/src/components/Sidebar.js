@@ -20,7 +20,14 @@ const Sidebar = () => {
         <div className="text-white text-lg ">
           <div
             className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => {
+              setIsOpen(!isOpen);
+              if (isHistoryOpen) setIsHistoryOpen(!isHistoryOpen);
+              if (isEmployeeManagementOpen)
+                setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
+              if (isFactoryManagementOpen)
+                setIsFactoryManagementOpen(!isFactoryManagementOpen);
+            }}
           >
             Sell Management
           </div>
@@ -60,7 +67,14 @@ const Sidebar = () => {
 
           <div
             className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
-            onClick={() => setIsHistoryOpen(!isHistoryOpen)}
+            onClick={() => {
+              setIsHistoryOpen(!isHistoryOpen);
+              if (isOpen) setIsOpen(!isOpen);
+              if (isEmployeeManagementOpen)
+                setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
+              if (isFactoryManagementOpen)
+                setIsFactoryManagementOpen(!isFactoryManagementOpen);
+            }}
           >
             History
           </div>
@@ -89,9 +103,13 @@ const Sidebar = () => {
 
           <div
             className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
-            onClick={() =>
-              setIsEmployeeManagementOpen(!isEmployeeManagementOpen)
-            }
+            onClick={() => {
+              setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
+              if (isHistoryOpen) setIsHistoryOpen(!isHistoryOpen);
+              if (isOpen) setIsOpen(!isOpen);
+              if (isFactoryManagementOpen)
+                setIsFactoryManagementOpen(!isFactoryManagementOpen);
+            }}
           >
             Employee Management
           </div>
@@ -129,7 +147,13 @@ const Sidebar = () => {
 
           <div
             className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
-            onClick={() => setIsFactoryManagementOpen(!isFactoryManagementOpen)}
+            onClick={() => {
+              setIsFactoryManagementOpen(!isFactoryManagementOpen);
+              if (isHistoryOpen) setIsHistoryOpen(!isHistoryOpen);
+              if (isEmployeeManagementOpen)
+                setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
+              if (isOpen) setIsOpen(!isOpen);
+            }}
           >
             Factory Management
           </div>
