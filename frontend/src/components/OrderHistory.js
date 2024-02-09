@@ -39,6 +39,7 @@ const OrderHistory = ({ orderRecord }) => {
           </thead>
           <tbody>
             {orderRecord.orderedProducts.map((orderedProduct, index) => {
+              if (!orderedProduct.product) return null;
               const totalAmount =
                 orderedProduct.quantity * orderedProduct.product.price;
               totalSum += totalAmount;
@@ -48,7 +49,9 @@ const OrderHistory = ({ orderRecord }) => {
                   <td className="border px-4 py-2">
                     {orderedProduct.product.name}
                   </td>
-                  <td className="border px-4 py-2">{orderedProduct.quantity}</td>
+                  <td className="border px-4 py-2">
+                    {orderedProduct.quantity}
+                  </td>
                   <td className="border px-4 py-2">
                     {orderedProduct.product.price}
                   </td>

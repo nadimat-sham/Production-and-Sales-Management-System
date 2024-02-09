@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -14,34 +14,54 @@ const Sidebar = () => {
 
         <div className="text-white text-lg ">
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/products">Products</Link>
+            <Link to="/products" className="block w-full h-full">
+              Products
+            </Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/customers">Customers</Link>
+            <Link to="/customers" className="block w-full h-full">
+              Customers
+            </Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/sell">Sell</Link>
+            <Link to="/sell" className="block w-full h-full">
+              Sell
+            </Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/order">Order</Link>
+            <Link to="/order" className="block w-full h-full">
+              Order
+            </Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/employees">Employees</Link>
+            <Link to="/receive" className="block w-full h-full">
+              Receive
+            </Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/accounts">Accounts</Link>
+            <Link to="/employees" className="block w-full h-full">
+              Employees
+            </Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/employeesAttendance">Employee Attendance</Link>
+            <Link to="/accounts" className="block w-full h-full">
+              Accounts
+            </Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employeesAttendance" className="block w-full h-full">
+              Employee Attendance
+            </Link>
+          </div>
+
+          {/* <div className="w-full py-2 px-4 hover:bg-gray-700">
             <Link to="/sell-history">Sell History</Link>
           </div>
 
@@ -50,11 +70,27 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/receive">Receive Products</Link>
-          </div>
-
-          <div className="w-full py-2 px-4 hover:bg-gray-700">
             <Link to="/receive-history">Receive History</Link>
+          </div> */}
+          <div className="w-full py-2 px-4 hover:bg-gray-700 relative group">
+            <span className="cursor-pointer">History</span>
+            <div className="absolute left-0 w-full mt-2 hidden group-hover:block">
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/sell-history" className="block w-full h-full">
+                  Sell History
+                </Link>
+              </div>
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/order-history" className="block w-full h-full">
+                  Order History
+                </Link>
+              </div>
+              <div className="w-full py-2 px-4 hover:bg-gray-700">
+                <Link to="/receive-history" className="block w-full h-full">
+                  Receive History
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
