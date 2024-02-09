@@ -61,7 +61,7 @@ const getSingleEmployee = async (req, res) => {
 
 
 // Update an employee
-updateEmployee = async (req, res) => {
+const updateEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!employee) {
@@ -76,7 +76,7 @@ updateEmployee = async (req, res) => {
 
 
 // Delete an employee
-deleteEmployee = async (req, res) => {
+const deleteEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndDelete(req.params.id);
     if (!employee) {

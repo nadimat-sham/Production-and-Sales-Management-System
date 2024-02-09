@@ -13,6 +13,10 @@ const Sidebar = () => {
         </Link>
 
         <div className="text-white text-lg ">
+
+          <div className="text-red-500 w-full py-2 px-4">
+            Sell Management
+          </div>
           <div className="w-full py-2 px-4 hover:bg-gray-700">
             <Link to="/products">Products</Link>
           </div>
@@ -30,15 +34,7 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/employees">Employees</Link>
-          </div>
-
-          <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/accounts">Accounts</Link>
-          </div>
-
-          <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/employeesAttendance">Employee Attendance</Link>
+            <Link to="/receive">Receive</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
@@ -50,12 +46,45 @@ const Sidebar = () => {
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/receive">Receive Products</Link>
+            <Link to="/receive-history">Receive History</Link>
+          </div>
+
+          <div className="text-red-500 w-full py-2 px-4">
+            Employee Management
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/receive-history">Receive History</Link>
+            <Link to="/employees">Employees</Link>
           </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/accounts">Accounts</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employeesAttendance">Attendance</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employeesPerformance">Performance</Link>
+          </div>
+
+          <div className="text-red-500 w-full py-2 px-4">
+            Factory Management
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/products">Raw Materials</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/products">Products</Link>
+          </div>
+
+
+
+
+          
         </div>
       </div>
       {/* <div className="flex-grow p-4">{renderComponent()}</div> */}

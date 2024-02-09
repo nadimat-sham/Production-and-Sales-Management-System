@@ -11,6 +11,7 @@ const receiveRoutes = require("./routes/showroom/receiveRoutes");
 const employeeRoutes = require("./routes/employee/employeeRoutes");
 const employeeAccountRoutes = require("./routes/employee/employeeAccountRoutes");
 const employeeAttendanceRoutes = require("./routes/employee/employeeAttendanceRoutes");
+const employeePerformanceRoutes = require("./routes/employee/employeePerformanceRoutes");
 
 // express app
 const app = express();
@@ -38,6 +39,7 @@ app.use("/accounts", employeeAccountRoutes);
 
 //attendance routes
 app.use("/employeesAttendance", employeeAttendanceRoutes);
+app.use("/employeesPerformance", employeePerformanceRoutes);
 
 // connect to db
 console.log("Here");
