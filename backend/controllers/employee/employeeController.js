@@ -1,4 +1,5 @@
 const Employee = require('../../models/employee/employeeModel');
+const Account = require('../../models/employee/employeeAccount')
 
 // Create an employee
 const createEmployee = async (req, res) => {
@@ -80,6 +81,11 @@ deleteEmployee = async (req, res) => {
     const employee = await Employee.findByIdAndDelete(req.params.id);
     if (!employee) {
       return res.status(400).json({ error: 'Employee not found' });
+    }
+    const account = await Account.findOne({ employee: employee._id });
+
+    if (account) {
+      await Account.findByIdAndDelete(account._id);
     }
     res.sendStatus(200);
   } catch (error) {
