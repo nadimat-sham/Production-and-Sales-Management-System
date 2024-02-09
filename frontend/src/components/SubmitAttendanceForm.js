@@ -44,7 +44,7 @@ function SubmitAttendanceForm() {
       await axios.post('/employeesAttendance/add', dataToSend);
       alert('Attendance record added successfully!');
      
-      navigate('/');
+      navigate(-1);
     } catch (error) {
       alert('Failed to submit attendance record.');
     }

@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 
 const Account = require('./employeeAccount')
 
+const EmployeePerformance = require('./employeePerformanceModel')
+
 const employeeSchema = new mongoose.Schema({
   name: { type: String, required: true },
   username: { type: String, required: true, unique: true },
@@ -22,6 +24,9 @@ employeeSchema.post('save', async function (doc) {
       totalMoney: 0, 
       history: []
     });
+    const employeePerformance = new EmployeePerformance({
+      
+    })
     console.log(doc._id, "finally Saved")
     await account.save();
   } catch (error) {

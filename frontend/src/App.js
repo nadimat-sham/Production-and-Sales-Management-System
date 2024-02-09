@@ -22,6 +22,8 @@ import SubmitAttendanceForm from "./components/SubmitAttendanceForm";
 import ViewAttendanceRecords from "./components/ViewAttendanceRecords";
 import SearchAttendanceRecords from "./components/SearchAttendanceRecords";
 
+import EmployeePerformancePage from "./pages/EmployeePerformancePage";
+
 function App() {
   return (
     <div className="App">
@@ -69,6 +71,11 @@ function App() {
                   path="/receive-history"
                   element={<ReceiveHistoryPage />}
                 />
+                <Route
+                  path="/employeesPerformance"
+                  element={<EmployeePerformancePage />}
+                />
+                
               </Routes>
             </div>
           </div>

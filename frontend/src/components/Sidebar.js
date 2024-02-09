@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
@@ -13,55 +13,31 @@ const Sidebar = () => {
         </Link>
 
         <div className="text-white text-lg ">
+
+          <div className="text-red-500 w-full py-2 px-4">
+            Sell Management
+          </div>
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/products" className="block w-full h-full">
-              Products
-            </Link>
+            <Link to="/products">Products</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/customers" className="block w-full h-full">
-              Customers
-            </Link>
+            <Link to="/customers">Customers</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/sell" className="block w-full h-full">
-              Sell
-            </Link>
+            <Link to="/sell">Sell</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/order" className="block w-full h-full">
-              Order
-            </Link>
+            <Link to="/order">Order</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/receive" className="block w-full h-full">
-              Receive
-            </Link>
+            <Link to="/receive">Receive</Link>
           </div>
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/employees" className="block w-full h-full">
-              Employees
-            </Link>
-          </div>
-
-          <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/accounts" className="block w-full h-full">
-              Accounts
-            </Link>
-          </div>
-
-          <div className="w-full py-2 px-4 hover:bg-gray-700">
-            <Link to="/employeesAttendance" className="block w-full h-full">
-              Employee Attendance
-            </Link>
-          </div>
-
-          {/* <div className="w-full py-2 px-4 hover:bg-gray-700">
             <Link to="/sell-history">Sell History</Link>
           </div>
 
@@ -71,27 +47,44 @@ const Sidebar = () => {
 
           <div className="w-full py-2 px-4 hover:bg-gray-700">
             <Link to="/receive-history">Receive History</Link>
-          </div> */}
-          <div className="w-full py-2 px-4 hover:bg-gray-700 relative group">
-            <span className="cursor-pointer">History</span>
-            <div className="absolute left-0 w-full mt-2 hidden group-hover:block">
-              <div className="w-full py-2 px-4 hover:bg-gray-700">
-                <Link to="/sell-history" className="block w-full h-full">
-                  Sell History
-                </Link>
-              </div>
-              <div className="w-full py-2 px-4 hover:bg-gray-700">
-                <Link to="/order-history" className="block w-full h-full">
-                  Order History
-                </Link>
-              </div>
-              <div className="w-full py-2 px-4 hover:bg-gray-700">
-                <Link to="/receive-history" className="block w-full h-full">
-                  Receive History
-                </Link>
-              </div>
-            </div>
           </div>
+
+          <div className="text-red-500 w-full py-2 px-4">
+            Employee Management
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employees">Employees</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/accounts">Accounts</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employeesAttendance">Attendance</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/employeesPerformance">Performance</Link>
+          </div>
+
+          <div className="text-red-500 w-full py-2 px-4">
+            Factory Management
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/products">Raw Materials</Link>
+          </div>
+
+          <div className="w-full py-2 px-4 hover:bg-gray-700">
+            <Link to="/products">Products</Link>
+          </div>
+
+
+
+
+          
         </div>
       </div>
       {/* <div className="flex-grow p-4">{renderComponent()}</div> */}
