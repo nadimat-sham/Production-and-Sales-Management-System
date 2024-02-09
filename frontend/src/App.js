@@ -9,6 +9,8 @@ import Customers from "./pages/CustomersPage";
 import CustomersSellHistory from "./components/CustomersSellHistory";
 import Order from "./pages/OrderPage";
 import OrderHistory from "./pages/OrderHistoryPage";
+import ReceivePage from "./pages/ReceivePage";
+import ReceiveHistoryPage from "./pages/ReceiveHistoryPage";
 
 //Employees
 import EmployeePage from "./pages/EmployeePage";
@@ -19,7 +21,6 @@ import EmployeeAttendancePage from "./pages/EmployeeAttendancePage";
 import SubmitAttendanceForm from "./components/SubmitAttendanceForm";
 import ViewAttendanceRecords from "./components/ViewAttendanceRecords";
 import SearchAttendanceRecords from "./components/SearchAttendanceRecords";
-import ReceivePage from "./pages/ReceivePage";
 
 function App() {
   return (
@@ -63,7 +64,11 @@ function App() {
                   path="/employeesAttendance/search"
                   element={<ViewAttendanceRecords />}
                 />
-                <Route path="/products/receive" element={<ReceivePage />} />
+                <Route path="/receive" element={<ReceivePage />} />
+                <Route
+                  path="/receive-history"
+                  element={<ReceiveHistoryPage />}
+                />
               </Routes>
             </div>
           </div>

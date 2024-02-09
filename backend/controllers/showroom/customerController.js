@@ -6,12 +6,12 @@ const getCustomers = async (req, res) => {
   const customers = await Customer.find({})
     .sort({ createdAt: -1 })
     .populate({
-      path: 'purchases',
+      path: "purchases",
       populate: {
-        path: 'soldProducts.product',
+        path: "soldProducts.product",
       },
     });
-  console.log(JSON.stringify(customers));
+  // console.log(JSON.stringify(customers));
   res.status(200).json(customers);
 };
 
@@ -34,7 +34,7 @@ const getCustomer = async (req, res) => {
 
 // create a new customer
 const createCustomer = async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { name, mobile, gender, address } = req.body;
 
   try {

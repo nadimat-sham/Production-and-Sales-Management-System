@@ -5,12 +5,12 @@ const mongoose = require("mongoose");
 const showRoomProductRoutes = require("./routes/showroom/productRoutes");
 const sellRoutes = require("./routes/showroom/sellRoutes");
 const customerRoutes = require("./routes/showroom/customerRoutes");
-const orderRoutes = require("./routes/showroom/orderRoutes")
+const orderRoutes = require("./routes/showroom/orderRoutes");
+const receiveRoutes = require("./routes/showroom/receiveRoutes");
 
-const employeeRoutes = require("./routes/employee/employeeRoutes")
-const employeeAccountRoutes = require("./routes/employee/employeeAccountRoutes")
-const employeeAttendanceRoutes = require('./routes/employee/employeeAttendanceRoutes');
-
+const employeeRoutes = require("./routes/employee/employeeRoutes");
+const employeeAccountRoutes = require("./routes/employee/employeeAccountRoutes");
+const employeeAttendanceRoutes = require("./routes/employee/employeeAttendanceRoutes");
 
 // express app
 const app = express();
@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 
 app.use((req, res, next) => {
-  //console.log(req.path, req.method);
+  console.log(req.path, req.method);
   next();
 });
 
@@ -30,16 +30,17 @@ app.use("/showroom/products", showRoomProductRoutes);
 app.use("/showroom/sells", sellRoutes);
 app.use("/showroom/customers", customerRoutes);
 app.use("/showroom/orders", orderRoutes);
+app.use("/showroom/receives", receiveRoutes);
 
 //Employee routes
-app.use("/employees", employeeRoutes)
-app.use("/accounts", employeeAccountRoutes)
+app.use("/employees", employeeRoutes);
+app.use("/accounts", employeeAccountRoutes);
 
 //attendance routes
-app.use("/employeesAttendance", employeeAttendanceRoutes)
+app.use("/employeesAttendance", employeeAttendanceRoutes);
 
 // connect to db
-console.log("Here")
+console.log("Here");
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {

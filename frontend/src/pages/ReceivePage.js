@@ -101,15 +101,15 @@ const ReceivePage = () => {
 
   const handleReceive = async () => {
     const cartToSend = cart.map((item) => ({
-      product: item.product._id,
+      product_id: item.product._id,
       quantity: item.quantity,
     }));
     console.log("cartToSend:", cartToSend);
-    return;
+    // return;
     try {
-      const response = await fetch("/showroom/receive", {
+      const response = await fetch("/showroom/receives/receive", {
         method: "POST",
-        body: JSON.stringify({ cart: cartToSend }),
+        body: JSON.stringify({ cartReceived: cartToSend }),
         headers: {
           "Content-Type": "application/json",
         },
