@@ -16,6 +16,8 @@ import ReceiveHistoryPage from "./pages/ReceiveHistoryPage";
 
 import PurchaseRawmaterialPage from "./pages/purchaseRawmaterialPage";
 import PurchaseRawmaterialHistoryPage from "./pages/purchaseRawmaterialHistoryPage";
+import UseRawmaterialPage from "./pages/UseRawmaterialPage";
+import UseRawmaterialHistoryPage from "./pages/UseRawmaterialHistoryPage";
 
 //Employees
 import EmployeePage from "./pages/EmployeePage";
@@ -83,6 +85,11 @@ function App() {
                 <Route
                   path="/factory/purchaseRawmaterialHistory"
                   element={<PurchaseRawmaterialHistoryPage />}
+                />
+                <Route path="/factory/useRawmaterial" element={<UseRawmaterialPage />} />
+                <Route
+                  path="/factory/useRawmaterialHistory"
+                  element={<UseRawmaterialHistoryPage />}
                 />
                 <Route
                   path="/employeesPerformance"

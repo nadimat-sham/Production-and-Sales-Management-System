@@ -11,6 +11,7 @@ const receiveRoutes = require("./routes/showroom/receiveRoutes");
 const factoryProductRoutes = require("./routes/factory/productRoutes");
 const factoryRawmaterialRoutes = require("./routes/factory/rawmaterialRoutes");
 const factorypurchaseRawmaterialRoutes = require("./routes/factory/purchaseRawmaterialRoutes");
+const factoryuseRawmaterialRoutes = require("./routes/factory/useRawmaterialRoutes");
 
 const employeeRoutes = require("./routes/employee/employeeRoutes");
 const employeeAccountRoutes = require("./routes/employee/employeeAccountRoutes");
@@ -40,6 +41,7 @@ app.use("/showroom/receives", receiveRoutes);
 app.use("/factory/products", factoryProductRoutes);
 app.use("/factory/rawmaterials", factoryRawmaterialRoutes);
 app.use("/factory/purchaseRawmaterial", factorypurchaseRawmaterialRoutes);
+app.use("/factory/useRawmaterial", factoryuseRawmaterialRoutes);
 
 //Employee routes
 app.use("/employees", employeeRoutes);

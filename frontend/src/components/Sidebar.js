@@ -97,7 +97,7 @@ const Sidebar = () => {
           </div> */}
 
           {isHistoryOpen && <></>}
-
+          {/*
           <div
             className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
             onClick={() => {
@@ -141,6 +141,7 @@ const Sidebar = () => {
               </div>
             </>
           )}
+          */}
 
           <div
             className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 cursor-pointer"
@@ -176,12 +177,12 @@ const Sidebar = () => {
               </div>
 
               <div className="w-full py-2 px-4 hover:bg-gray-700">
-                <Link to="/" className="block w-full h-full">
+                <Link to="/factory/useRawmaterial" className="block w-full h-full">
                   Use Raw Materials
                 </Link>
               </div>
 
-              <div className="w-full py-2 px-4 hover:bg-gray-700">
+              {/* <div className="w-full py-2 px-4 hover:bg-gray-700">
                 <Link to="/" className="block w-full h-full">
                   Produce
                 </Link>
@@ -191,7 +192,7 @@ const Sidebar = () => {
                 <Link to="/" className="block w-full h-full">
                   Send product to showroom
                 </Link>
-              </div>
+              </div> */}
 
               <div className="w-full py-2 px-4 hover:bg-gray-700">
                 <Link to="/order-history" className="block w-full h-full">
@@ -206,12 +207,12 @@ const Sidebar = () => {
               </div>
 
               <div className="w-full py-2 px-4 hover:bg-gray-700">
-                <Link to="/" className="block w-full h-full">
+                <Link to="/factory/useRawmaterialHistory" className="block w-full h-full">
                   Use Raw Materials History
                 </Link>
               </div>
 
-              <div className="w-full py-2 px-4 hover:bg-gray-700">
+              {/* <div className="w-full py-2 px-4 hover:bg-gray-700">
                 <Link to="/" className="block w-full h-full">
                   Produce History
                 </Link>
@@ -221,7 +222,7 @@ const Sidebar = () => {
                 <Link to="/" className="block w-full h-full">
                   Send product to showroom History
                 </Link>
-              </div>
+              </div> */}
             </>
           )}
         </div>
