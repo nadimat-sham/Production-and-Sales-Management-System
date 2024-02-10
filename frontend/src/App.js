@@ -14,6 +14,9 @@ import OrderHistory from "./pages/OrderHistoryPage";
 import ReceivePage from "./pages/ReceivePage";
 import ReceiveHistoryPage from "./pages/ReceiveHistoryPage";
 
+import PurchaseRawmaterialPage from "./pages/purchaseRawmaterialPage";
+import PurchaseRawmaterialHistoryPage from "./pages/purchaseRawmaterialHistoryPage";
+
 //Employees
 import EmployeePage from "./pages/EmployeePage";
 import AddEmployee from "./components/AddEmployee";
@@ -74,6 +77,12 @@ function App() {
                 <Route
                   path="/receive-history"
                   element={<ReceiveHistoryPage />}
+                />
+
+                <Route path="/factory/purchaseRawmaterial" element={<PurchaseRawmaterialPage />} />
+                <Route
+                  path="/factory/purchaseRawmaterialHistory"
+                  element={<PurchaseRawmaterialHistoryPage />}
                 />
                 <Route
                   path="/employeesPerformance"
