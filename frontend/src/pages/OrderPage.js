@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProductInOrder from "../components/ProductInOrder";
 
 const Products = () => {
+  const navigate = useNavigate();
   //const [customers, setCustomers] = useState([]);
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [orderCart, setOrderCart] = useState([]);
+  const [changed, setChanged] = useState(false);
   //const [referenceName, setReferenceName] = useState(""); // New state variable for reference name
 
   useEffect(() => {
@@ -16,7 +19,7 @@ const Products = () => {
 
       if (response.ok) {
         setProducts(json);
-        console.log(json);
+        //console.log(json);
       }
     };
     /*
@@ -31,9 +34,9 @@ const Products = () => {
 */
     //fetchCustomers();
     fetchProducts();
-    //console.log(products);
-    //console.log(customers);
-  }, []);
+    ////console.log(products);
+    ////console.log(customers);
+  }, [changed]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -57,8 +60,9 @@ const Products = () => {
         },
       });
       const json = await response.json();
-      console.log(json);
-      window.location.reload();
+      //console.log(json);
+      // window.location.reload();
+      navigate("/order-history");
     } catch (error) {
       console.error("Error ordering products:", error);
     }
@@ -73,7 +77,7 @@ const Products = () => {
     <div className="Product grid grid-cols-5 gap-4 mt-0 ">
       <div className="col-span-3">
         <div className=" fixed w-[1200px]">
-        <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+          <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
             <input
               type="text"
               placeholder="Search..."
@@ -140,11 +144,9 @@ const Products = () => {
           <div className="flex justify-center gap-3 mt-4">
             <button
               onClick={handleOrder}
-              disabled={ orderCart.length === 0} // Disable the button when referenceName is empty or there are no items in the cart
+              disabled={orderCart.length === 0} // Disable the button when referenceName is empty or there are no items in the cart
               className={` px-4 py-2 text-white rounded-md ${
-                orderCart.length === 0
-                  ? "bg-gray-500"
-                  : "bg-blue-500"
+                orderCart.length === 0 ? "bg-gray-500" : "bg-blue-500"
               }`}
             >
               Order

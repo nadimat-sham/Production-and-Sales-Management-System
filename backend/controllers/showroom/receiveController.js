@@ -7,21 +7,21 @@ const mongoose = require("mongoose");
 // receive products
 
 const receiveProducts = async (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   const { cartReceived } = req.body;
-  console.log(cartReceived);
+  //console.log(cartReceived);
   const cart = [];
 
   try {
     for (const item of cartReceived) {
-      console.log(item);
+      //console.log(item);
       const product = await Product.findById(item.product_id);
       if (!product) {
         return res
           .status(404)
           .json({ error: `Product with id ${item.product_id} not found` });
       }
-      console.log(product.name);
+      //console.log(product.name);
       product.inStock += item.quantity;
       const now = {
         product: product,
@@ -47,7 +47,7 @@ const receiveHistory = async (req, res) => {
     const receiveHistory = await Receive.find().populate(
       "receivedProducts.product"
     );
-    console.log(receiveHistory);
+    //console.log(receiveHistory);
     res.status(200).json(receiveHistory);
   } catch (error) {
     res

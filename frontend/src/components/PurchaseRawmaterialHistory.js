@@ -3,8 +3,8 @@ import React from "react";
 const ReceiveHistory = ({ receiveRecord }) => {
   let id = 1;
   let totalQuantity = 0;
-  console.log("inside receive history");
-  console.log(receiveRecord);
+  //console.log("inside receive history");
+  //console.log(receiveRecord);
 
   return (
     <div className="max-w-md bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3">

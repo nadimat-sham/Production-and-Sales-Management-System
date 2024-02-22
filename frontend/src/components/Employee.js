@@ -1,65 +1,88 @@
-import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom'
-import axios from 'axios';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const Employee = ({employee, employees, setEmployees}) => {
+const Employee = ({ employee }) => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
-
-  const handleDelete = (employeeId) => {
-
-    // Send delete request to the server
-    axios.delete(`/employees/${employeeId}`)
-      .then(() => {
-        setEmployees(employees.filter(employee => employee._id !== employeeId));
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  const handleDelete = async (employeeId) => {
+    const response = await fetch(`/employees/${employeeId}`, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+    window.location.reload();
   };
 
-  const handleUpdate = (employeeId)=>{
-    navigate(`/employees/${employeeId}/update`)
-  }
+  const handleUpdate = (employeeId) => {
+    navigate(`/employees/${employeeId}/update`);
+  };
 
   return (
-  
-        <div key={employee._id} className=" rounded-xl shadow-lg p-4 mb-4">
-          <h3 className="text-xl font-bold my-4">{employee.name}</h3>
-          <h3 className="text-lg font-bold my-4">{employee.username}</h3>
-          <p className="my-4"><span className='font-bold mr-4'>Position:</span> {employee.position}</p>
-          <p className="my-4"><span className='font-bold mr-4'>Email:</span> {employee.email}</p>
-          <p className="my-4"><span className='font-bold mr-4'>Phone:</span> {employee.phone}</p>
-          <p className="my-4"><span className='font-bold mr-4'>Salary:</span> {employee.salary}</p>
-          <p className="my-4"><span className='font-bold mr-4'>Address:</span> {employee.address}</p>
-          <p className="my-4"><span className='font-bold mr-4'>Hire Date:</span> {
-          
-          new Date(employee.hireDate).toLocaleString('en-US',{
-                day: 'numeric',
-                month: 'short',
-                year: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
-                hour12: true
-          }
-          )
-          
-          }</p>
+    <div className="max-w-md bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3">
+      <div className="p-8">
+        <table className="table-auto">
+          <tbody>
+            <tr>
+              <td className="mt-2 text-black font-medium text-lg">Name:</td>
+              <td className="text-black font-medium text-lg">
+                {employee.name}
+              </td>
+            </tr>
+            <tr>
+              <td className="mt-2 text-gray-500">ID:</td>
+              <td className="text-gray-500">{employee._id}</td>
+            </tr>
+            <tr>
+              <td className="mt-2 text-gray-500">Position:</td>
+              <td className="text-gray-500">{employee.position}</td>
+            </tr>
+            <tr>
+              <td className="mt-2 text-gray-500">Email:</td>
+              <td className="text-gray-500">{employee.email}</td>
+            </tr>
+            <tr>
+              <td className="mt-2 text-gray-500">Phone:</td>
+              <td className="text-gray-500">{employee.phone}</td>
+            </tr>
+            <tr>
+              <td className="mt-2 text-gray-500">Salary:</td>
+              <td className="text-gray-500">{employee.salary}</td>
+            </tr>
+            <tr>
+              <td className="mt-2 text-gray-500">Address:</td>
+              <td className="text-gray-500">{employee.address}</td>
+            </tr>
+            <tr>
+              <td className="mt-2 text-gray-500">Hire Date:</td>
+              <td className="text-gray-500">
+                {new Date(employee.hireDate).toLocaleString("en-US", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
+                  second: "numeric",
+                  hour12: true,
+                })}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="flex justify-end">
           <button
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
+            onClick={() => handleUpdate(employee._id)}
+            className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md"
+          >
+            Edit
+          </button>
+          <button
             onClick={() => handleDelete(employee._id)}
+            className="mt-3 ml-3 px-4 py-2 bg-red-500 text-white rounded-md"
           >
             Delete
           </button>
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded ml-2"
-            onClick={() => handleUpdate(employee._id)}
-          >
-            Update
-          </button>
-        </div>  
- 
+        </div>
+      </div>
+    </div>
   );
 };
 

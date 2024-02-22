@@ -7,13 +7,14 @@ const OrderHistoryPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState("product");
   const [searchDate, setSearchDate] = useState(""); // New state variable for search date
+  const [statusFilter, setStatusFilter] = useState("all");
 
   useEffect(() => {
     const fetchOrderHistory = async () => {
       try {
         const response = await axios.get("showroom/orders/history/order");
         setOrderHistory(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         console.error("Error fetching order history:", error);
       }
@@ -58,13 +59,51 @@ const OrderHistoryPage = () => {
         recordDate.getDate() === searchDateObj.getDate();
     }
 
-    return matchesSearchTerm && matchesSearchDate;
+    let matchesStatusFilter = true;
+    if (statusFilter !== "all") {
+      matchesStatusFilter = record.status === statusFilter;
+    }
+
+    return matchesSearchTerm && matchesSearchDate && matchesStatusFilter;
   });
 
   return (
     <div>
       <div className="fixed w-[1200px]">
         <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+          <button
+            onClick={() => setStatusFilter("all")}
+            className={`px-4 py-2 rounded ${
+              statusFilter === "all" ? "bg-blue-200" : ""
+            }`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => setStatusFilter("pending")}
+            className={`px-4 py-2 rounded ${
+              statusFilter === "pending" ? "bg-blue-200" : ""
+            }`}
+          >
+            Pending
+          </button>
+          <button
+            onClick={() => setStatusFilter("accepted")}
+            className={`px-4 py-2 rounded ${
+              statusFilter === "accepted" ? "bg-blue-200" : ""
+            }`}
+          >
+            Accepted
+          </button>
+          <button
+            onClick={() => setStatusFilter("rejected")}
+            className={`px-4 py-2 rounded ${
+              statusFilter === "rejected" ? "bg-blue-200" : ""
+            }`}
+          >
+            Rejected
+          </button>
+
           <input
             type="text"
             placeholder="Search..."

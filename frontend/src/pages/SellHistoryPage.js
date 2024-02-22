@@ -8,12 +8,13 @@ const SellHistoryPage = () => {
   const [searchType, setSearchType] = useState("mobile");
   const [searchDate, setSearchDate] = useState(""); // New state variable for search date
 
+  //console.log("hereeeeeeeee");
   useEffect(() => {
     const fetchSellHistory = async () => {
       try {
         const response = await axios.get("showroom/sells/history/sell");
         setSellHistory(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         console.error("Error fetching sell history:", error);
       }
@@ -49,7 +50,7 @@ const SellHistoryPage = () => {
             )
           : false;
         break;
-        default:
+      default:
       // Add more cases as needed
     }
 
@@ -65,6 +66,8 @@ const SellHistoryPage = () => {
 
     return matchesSearchTerm && matchesSearchDate;
   });
+
+  //console.log(sellHistory);
 
   return (
     <div>

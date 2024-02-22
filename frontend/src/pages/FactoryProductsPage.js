@@ -15,7 +15,7 @@ const Products = () => {
 
       if (response.ok) {
         setProducts(json);
-        console.log(json);
+        //console.log(json);
       }
     };
 

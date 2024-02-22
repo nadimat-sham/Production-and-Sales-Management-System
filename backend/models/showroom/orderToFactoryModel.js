@@ -17,6 +17,11 @@ const orderSchema = new Schema(
         },
       },
     ],
+    status: {
+      type: String,
+      required: false,
+      default: "pending",
+    },
   },
   { timestamps: true }
 );

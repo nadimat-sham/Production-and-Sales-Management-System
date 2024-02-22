@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductInSell from "../components/ProductInSell";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
+  const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,7 +18,7 @@ const Products = () => {
 
       if (response.ok) {
         setProducts(json);
-        console.log(json);
+        //console.log(json);
       }
     };
     const fetchCustomers = async () => {
@@ -30,8 +32,8 @@ const Products = () => {
 
     fetchCustomers();
     fetchProducts();
-    console.log(products);
-    console.log(customers);
+    //console.log(products);
+    //console.log(customers);
   }, []);
 
   const handleSearch = (event) => {
@@ -56,8 +58,8 @@ const Products = () => {
         },
       });
       const json = await response.json();
-      console.log(json);
-      window.location.reload();
+      //console.log(json);
+      navigate("/sell-history");
     } catch (error) {
       console.error("Error selling products:", error);
     }
@@ -72,7 +74,7 @@ const Products = () => {
     <div className="Product grid grid-cols-5 gap-4 mt-0 ">
       <div className="col-span-3">
         <div className=" fixed w-[1200px]">
-        <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+          <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
             <input
               type="text"
               placeholder="Search..."

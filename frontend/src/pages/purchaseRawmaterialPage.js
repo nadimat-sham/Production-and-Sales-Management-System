@@ -40,7 +40,7 @@ const ReceivePage = () => {
   }, []);
 
   useEffect(() => {
-    // console.log("searchTerm:", searchTerm);
+    // //console.log("searchTerm:", searchTerm);
     setFilteredProducts(
       products.filter((product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -49,10 +49,10 @@ const ReceivePage = () => {
   }, [searchTerm, products]);
 
   const handleProductSelect = (product) => {
-    console.log("onClick");
+    //console.log("onClick");
     setSearchTerm(product.name);
-    console.log("Selected Raw Material:", product);
-    console.log(searchTerm);
+    //console.log("Selected Raw Material:", product);
+    //console.log(searchTerm);
     setIsFocused(false);
     setSelectedProduct(product);
   };
@@ -88,7 +88,7 @@ const ReceivePage = () => {
     setValidationMessageQuantity("Quantity ok");
   };
   //   const handleRemoveFromCart = (productToRemove) => {
-  //     console.log("productToRemove:", productToRemove.name);
+  //     //console.log("productToRemove:", productToRemove.name);
   //     // setCart(
   //     //   cart.filter((product) => product.product.id !== productToRemove.id)
   //     // );
@@ -104,7 +104,7 @@ const ReceivePage = () => {
       product_id: item.product._id,
       quantity: item.quantity,
     }));
-    console.log("cartToSend:", cartToSend);
+    //console.log("cartToSend:", cartToSend);
     // return;
     try {
       const response = await fetch("/factory/purchaseRawmaterial/purchase", {
@@ -115,14 +115,14 @@ const ReceivePage = () => {
         },
       });
       const json = await response.json();
-      console.log(json);
+      //console.log(json);
       window.location.reload();
     } catch (error) {
       console.error("Error purchasing raw materials:", error);
     }
   };
 
-  console.log(cart);
+  //console.log(cart);
   return (
     <div className="p-4">
       <h1 className="text-3xl mt-8 mb-4">Purchase page</h1>

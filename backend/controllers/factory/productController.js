@@ -28,14 +28,14 @@ const getProduct = async (req, res) => {
 // create a new product
 const createProduct = async (req, res) => {
   const { name, catagory, price, inStock } = req.body;
-  console.log(req.body);
+  //console.log(req.body);
   // add to the database
   try {
     const product = await Product.create({ name, catagory, price, inStock });
-    console.log(product);
+    //console.log(product);
     res.status(200).json(product);
   } catch (error) {
-    console.log(error);
+    //console.log(error);
     res.status(400).json({ error: error.message });
   }
 };
@@ -99,7 +99,7 @@ const sellHistory = async (req, res) => {
 // delete a product
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
+  //console.log(id);
   //   return;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -119,7 +119,7 @@ const deleteProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   const { id } = req.params;
   const { name, price } = req.body;
-  console.log(name, price);
+  //console.log(name, price);
   // return;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {

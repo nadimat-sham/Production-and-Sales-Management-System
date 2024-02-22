@@ -13,7 +13,7 @@ const Customers = () => {
       const json = await response.json();
       if (response.ok) {
         setCustomers(json);
-        console.log(json);
+        //console.log(json);
       }
     };
 

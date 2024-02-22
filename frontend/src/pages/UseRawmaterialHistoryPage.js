@@ -13,8 +13,8 @@ const ReceiveHistoryPage = () => {
       try {
         const response = await axios.get("/factory/useRawmaterial/history/use");
         setReceiveHistory(response.data);
-        console.log("heloooooooooooooooooo");
-        console.log(response.data);
+        //console.log("heloooooooooooooooooo");
+        //console.log(response.data);
       } catch (error) {
         console.error("Error fetching use history:", error);
       }

@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
 
-const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [position, setPosition] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [salary, setSalary] = useState('');
-  const [address, setAdress] = useState('');
-  const [hireDate, setHireDate] = useState('');
+const AddEmployee = ({ employees, setEmployees, setAddAnEmployee }) => {
+  const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [salary, setSalary] = useState("");
+  const [address, setAddress] = useState("");
+  const [hireDate, setHireDate] = useState("");
 
   const handleAddEmployee = () => {
     const newEmployee = {
       name,
-      username,
       position,
       email,
       phone,
@@ -22,113 +19,105 @@ const AddEmployee = ({employees, setEmployees, setAddAnEmployee}) => {
       salary,
       hireDate,
     };
-
-    axios.post('/employees', newEmployee)
-      .then(response => {
-        console.log(response.data);
-        setName('');
-        setUsername('');
-        setPosition('');
-        setEmail('');
-        setPhone('');
-        setSalary('');
-        setHireDate('');
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-      setEmployees([...employees,newEmployee])
-      setAddAnEmployee(false)
+    setEmployees([...employees, newEmployee]);
+    setAddAnEmployee(false);
   };
 
   const handleCancelEmployee = () => {
-    setAddAnEmployee(false)
+    setAddAnEmployee(false);
   };
 
   return (
-    <div className="container mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Add Employee</h2>
-      <form className="bg-gray-100 rounded p-4">
-        <label className="mb-2 block"><span className='text-red-600'>* </span>Name:</label>
-        <input
-          type="text"
-          onChange={e => setName(e.target.value)}
-          required
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-        />
-
-        <label className="mb-2 block"><span className='text-red-600'>* </span>User Name:</label>
-        <input
-          type="text"
-          onChange={e => setUsername(e.target.value)}
-          required
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-        />
-
-        <label className="mb-2 block"><span className='text-red-600'>* </span>Position:</label>
-        <input
-          type="text"
-          onChange={e => setPosition(e.target.value)}
-          required
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-        />
-
-        <label className="mb-2 block">Email:</label>
-        <input
-          type="email"
-          onChange={e => setEmail(e.target.value)}
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-        />
-
-        <label className="mb-2 block"><span className='text-red-600'>* </span>Phone:</label>
-        <input
-          type="tel"
-          onChange={e => setPhone(e.target.value)}
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-          required
-        />
-
-        <label className="mb-2 block"><span className='text-red-600'>* </span>Salary:</label>
-        <input
-          type="number"
-          onChange={e => setSalary(e.target.value)}
-          required
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-        />
-
-        <label className="mb-2 block">Address:</label>
-        <input
-          type="text"
-          onChange={e => setAdress(e.target.value)}
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-        />
-
-        <label className="mb-2 block">Hire Date:</label>
-        <input
-          type="datetime-local"
-          onChange={e => setHireDate(e.target.value)}
-          className="border border-gray-400 p-2 rounded mb-2 w-full"
-        />
-
-        <button
-          type="button"
-          onClick={handleAddEmployee}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-        >
-          
-          Add
-        </button>
-
-        <button
-          type="button"
-          onClick={handleCancelEmployee}
-          className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
-        >
-          
-          Cancel
-        </button>
-      </form>
+    <div className="ml-72">
+      <div className="mt-20 ml-56 flex-col items-center justify-center h-screen ">
+        <div className="p-12 bg-white rounded shadow-xl w-2/3">
+          <h1 className="text-3xl font-bold mb-4">Add Employee</h1>
+          <div className="flex gap-1">
+            <span className="text-red-500">*</span>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-3 py-2 mb-3 border rounded-md outline-none"
+            />
+          </div>
+          <div className="flex gap-1">
+            <span className="text-red-500">*</span>
+            <input
+              type="text"
+              placeholder="Position"
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
+              className="w-full px-3 py-2 mb-3 border rounded-md outline-none"
+            />
+          </div>
+          <div className="flex gap-1">
+            <span className="text-red-500">*</span>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 mb-3 border rounded-md outline-none"
+            />
+          </div>
+          <div className="flex gap-1">
+            <span className="text-red-500">*</span>
+            <input
+              type="tel"
+              placeholder="Phone"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="w-full px-3 py-2 mb-3 border rounded-md outline-none"
+            />
+          </div>
+          <div className="flex gap-1">
+            <span className="text-red-500">*</span>
+            <input
+              type="number"
+              placeholder="Salary"
+              value={salary}
+              onChange={(e) => setSalary(e.target.value)}
+              className="w-full px-3 py-2 mb-3 border rounded-md outline-none"
+            />
+          </div>
+          <div className="flex gap-1">
+            <span className="text-white">*</span>
+            <input
+              type="text"
+              placeholder="Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="w-full px-3 py-2 mb-3 border rounded-md outline-none"
+            />
+          </div>
+          <div className="flex gap-1">
+            <span className="text-white">*</span>
+            <input
+              type="datetime-local"
+              placeholder="Hire Date"
+              value={hireDate}
+              onChange={(e) => setHireDate(e.target.value)}
+              className="w-full px-3 py-2 mb-3 border rounded-md outline-none"
+            />
+          </div>
+          <div className="flex justify-center gap-3">
+            <button
+              onClick={handleAddEmployee}
+              className="w-20 px-3 py-2 text-white bg-green-600 rounded-md"
+            >
+              Add
+            </button>
+            <button
+              onClick={handleCancelEmployee}
+              className="px-4 py-2 bg-red-500 text-white rounded-md"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

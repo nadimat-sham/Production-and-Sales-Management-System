@@ -1,14 +1,73 @@
-import React from "react";
+import React, { useContext } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 const OrderHistory = ({ orderRecord }) => {
   let id = 1;
   let totalSum = 0;
+  const { user } = useAuthContext();
+  const [changed, setChanged] = useState(false);
+
+  const handleStatusChange = async (orderId, newStatus) => {
+    const response = await fetch(`/factory/orders/${orderId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: newStatus }),
+    });
+    if (response.ok) {
+      orderRecord.status = newStatus;
+    }
+    // window.location.reload();
+    setChanged(!changed);
+  };
+
+  const getStatusStyle = (status) => {
+    switch (status) {
+      case "pending":
+        return "bg-blue-200 text-blue-700 px-2 py-1 rounded";
+      case "accepted":
+        return "bg-green-200 text-green-700 px-2 py-1 rounded";
+      case "rejected":
+        return "bg-red-200 text-red-700 px-2 py-1 rounded";
+      default:
+        return "";
+    }
+  };
 
   return (
     <div className="max-w-md bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3">
       <div className="p-8">
-        <div className="tracking-wide text-indigo-500 font-semibold">
-          ID: {orderRecord._id}
+        <div className="flex justify-between items-center">
+          <div className="tracking-wide text-indigo-500 font-semibold">
+            ID: {orderRecord._id}
+          </div>
+          <div className={getStatusStyle(orderRecord.status)}>
+            {orderRecord.status}
+          </div>
+          {user.username === "factory_manager" &&
+            orderRecord.status === "pending" && (
+              <div className="flex gap-2 ml-4">
+                <button
+                  onClick={() =>
+                    handleStatusChange(orderRecord._id, "accepted")
+                  }
+                  className="bg-green-200 text-green-700 px-2 py-1 rounded"
+                >
+                  Accept
+                </button>
+                <button
+                  onClick={() =>
+                    handleStatusChange(orderRecord._id, "rejected")
+                  }
+                  className="bg-red-200 text-red-700 px-2 py-1 rounded"
+                >
+                  Reject
+                </button>
+              </div>
+            )}
         </div>
         <div className="flex gap-5">
           <p className="mt-2 text-gray-500">

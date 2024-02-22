@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 // sell products
 
 const sellProducts = async (req, res) => {
+  //console.log("sell products adfsafafd");
   // console.log(req.body);
   const { cart, referenceName } = req.body;
   const soldProducts = cart;
@@ -38,7 +39,7 @@ const sellProducts = async (req, res) => {
       }
 
       product.inStock -= item.quantity;
-      product.sold += item.quantity;
+      product.sold = Number(product.sold) + Number(item.quantity);
       const now = {
         product: product,
         quantity: item.quantity,
@@ -61,10 +62,11 @@ const sellProducts = async (req, res) => {
 };
 
 const sellHistory = async (req, res) => {
+  //console.log("sell history");
   try {
     // const sellHistory = await Sell.find({}).sort({ createdAt: -1 });
     const sellHistory = await Sell.find().populate("soldProducts.product");
-    // console.log(sellHistory);
+    //console.log(sellHistory);
     res.status(200).json(sellHistory);
   } catch (error) {
     res

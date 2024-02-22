@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Customer = ({ customer }) => {
   const navigate = useNavigate();
 
   const handleEdit = () => {
-    console.log(`Edit customer with ID: ${customer.id}`);
+    //console.log(`Edit customer with ID: ${customer.id}`);
   };
 
   const handleViewBuyHistory = () => {
-    console.log(`View buy history for customer with ID: ${customer.id}`);
+    //console.log(`View buy history for customer with ID: ${customer.id}`);
     navigate(`/customers/${customer._id}`, { state: { customer } });
   };
 

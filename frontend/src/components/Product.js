@@ -4,13 +4,15 @@ const Product = ({ product }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newName, setNewName] = useState(product.name);
   const [newPrice, setNewPrice] = useState(product.price);
+  const [newSold, setNewSold] = useState(product.sold);
+  const [newInStock, setNewInStock] = useState(product.inStock);
 
   const handleEdit = () => {
     setIsEditing(true);
   };
 
   const handleViewSellHistory = () => {
-    console.log(`View sell history for product with ID: ${product.id}`);
+    //console.log(`View sell history for product with ID: ${product.id}`);
   };
 
   const handleDelete = async () => {
@@ -31,6 +33,8 @@ const Product = ({ product }) => {
       body: JSON.stringify({
         name: newName,
         price: newPrice,
+        sold: newSold,
+        inStock: newInStock,
       }),
     });
 
@@ -38,6 +42,8 @@ const Product = ({ product }) => {
       // If the response is ok, update the product name and price
       product.name = newName;
       product.price = newPrice;
+      product.sold = newSold;
+      product.inStock = newInStock;
     } else {
       // Handle error
       console.error("Failed to update product");
@@ -67,10 +73,26 @@ const Product = ({ product }) => {
             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             placeholder="New product price"
           />
+          <input
+            type="number"
+            min="0"
+            value={newSold}
+            onChange={(e) => setNewSold(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="New sold quantity"
+          />
+          <input
+            type="number"
+            min="0"
+            value={newInStock}
+            onChange={(e) => setNewInStock(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="New In Stock"
+          />
           <div className="flex justify-between">
             <button
               onClick={handleSave}
-              disabled={newPrice <= 0}
+              disabled={newPrice <= 0 || newSold < 0}
               className={`px-4 py-2 rounded-md text-white ${
                 newPrice > 0 ? "bg-blue-500" : "bg-blue-200"
               } focus:outline-none`}

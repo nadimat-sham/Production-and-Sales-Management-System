@@ -11,10 +11,12 @@ const ReceiveHistoryPage = () => {
   useEffect(() => {
     const fetchReceiveHistory = async () => {
       try {
-        const response = await axios.get("/factory/purchaseRawmaterial/history/purchase");
+        const response = await axios.get(
+          "/factory/purchaseRawmaterial/history/purchase"
+        );
         setReceiveHistory(response.data);
-        console.log("heloooooooooooooooooo");
-        console.log(response.data);
+        //console.log("heloooooooooooooooooo");
+        //console.log(response.data);
       } catch (error) {
         console.error("Error fetching purchase history:", error);
       }

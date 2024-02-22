@@ -1,9 +1,8 @@
+const mongoose = require("mongoose");
 
-const mongoose = require('mongoose');
+const Account = require("./employeeAccount");
 
-const Account = require('./employeeAccount')
-
-const EmployeePerformance = require('./employeePerformanceModel')
+const EmployeePerformance = require("./employeePerformanceModel");
 
 const employeeSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -16,25 +15,21 @@ const employeeSchema = new mongoose.Schema({
   hireDate: { type: Date, required: false },
 });
 
-
-employeeSchema.post('save', async function (doc) {
+employeeSchema.post("save", async function (doc) {
   try {
     const account = new Account({
       employee: doc._id,
-      totalMoney: 0, 
-      history: []
+      totalMoney: 0,
+      history: [],
     });
-    const employeePerformance = new EmployeePerformance({
-      
-    })
-    console.log(doc._id, "finally Saved")
+    const employeePerformance = new EmployeePerformance({});
+    console.log(doc._id, "finally Saved");
     await account.save();
   } catch (error) {
-    console.error('Error creating account:', error);
+    console.error("Error creating account:", error);
   }
 });
 
-
-const employee = mongoose.model('Employee', employeeSchema);
+const employee = mongoose.model("Employee", employeeSchema);
 
 module.exports = employee;
