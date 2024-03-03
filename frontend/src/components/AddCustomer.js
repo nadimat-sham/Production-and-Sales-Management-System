@@ -28,7 +28,7 @@ const AddCustomer = ({ onCancel, setCustomers }) => {
     !mobile.startsWith("01");
 
   return (
-    <div className="ml-72">
+    <div className="ml-0">
       <div className="mt-20 ml-56 flex-col items-center justify-center h-screen ">
         <div className="p-12 bg-white rounded shadow-xl w-2/3">
           <h1 className="text-3xl font-bold mb-4">Add Customer</h1>
@@ -80,7 +80,7 @@ const AddCustomer = ({ onCancel, setCustomers }) => {
               onClick={handleAdd}
               disabled={isAddDisabled}
               className={`w-20 px-3 py-2 text-white ${
-                isAddDisabled ? "bg-green-300" : "bg-green-600"
+                isAddDisabled ? "bg-gray-500" : "bg-gray-800"
               } rounded-md`}
             >
               Add

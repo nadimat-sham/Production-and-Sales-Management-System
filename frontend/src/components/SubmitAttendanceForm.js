@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SubmitAttendanceForm() {
   const [formData, setFormData] = useState({
-    employeeUsername: '',
-    date: '',
-    status: '',
-    checkInTime: '',
-    checkOutTime: '',
-    reason: '',
-    location: ''
+    employeeUsername: "",
+    date: "",
+    status: "",
+    checkInTime: "",
+    checkOutTime: "",
+    reason: "",
+    location: "",
   });
 
   const navigate = useNavigate();
-  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const combineDateAndTime = (date, time) => {
     if (!date || !time) return null; // Check if both date and time are provided
-    let [hours, minutes] = time.split(':');
+    let [hours, minutes] = time.split(":");
     let combined = new Date(date);
     combined.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0);
     return combined;
@@ -41,12 +40,12 @@ function SubmitAttendanceForm() {
     delete dataToSend.checkOutTime;
 
     try {
-      await axios.post('/employeesAttendance/add', dataToSend);
-      alert('Attendance record added successfully!');
-     
+      await axios.post("/employeesAttendance/add", dataToSend);
+      alert("Attendance record added successfully!");
+
       navigate(-1);
     } catch (error) {
-      alert('Failed to submit attendance record.');
+      alert("Failed to submit attendance record.");
     }
   };
 
@@ -54,12 +53,14 @@ function SubmitAttendanceForm() {
     navigate(-1); // Go back to the previous page
   };
 
-
   return (
     <div className="max-w-md mx-auto my-10">
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="employee">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="employee"
+          >
             Employee Username
           </label>
           <input
@@ -74,7 +75,10 @@ function SubmitAttendanceForm() {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="date"
+          >
             Date
           </label>
           <input
@@ -89,7 +93,10 @@ function SubmitAttendanceForm() {
         </div>
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="status">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="status"
+          >
             Status
           </label>
           <select
@@ -108,10 +115,13 @@ function SubmitAttendanceForm() {
           </select>
         </div>
 
-        {['Present', 'Late'].includes(formData.status) && (
+        {["Present", "Late"].includes(formData.status) && (
           <>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="checkIn">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="checkIn"
+              >
                 Check-In Time
               </label>
               <input
@@ -124,7 +134,10 @@ function SubmitAttendanceForm() {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="checkOut">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="checkOut"
+              >
                 Check-Out Time
               </label>
               <input
@@ -139,9 +152,12 @@ function SubmitAttendanceForm() {
           </>
         )}
 
-        {['Absent', 'On Leave'].includes(formData.status) && (
+        {["Absent", "On Leave"].includes(formData.status) && (
           <div className="mb-4">
-            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="reason">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="reason"
+            >
               Reason
             </label>
             <input
@@ -157,7 +173,10 @@ function SubmitAttendanceForm() {
         )}
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="location">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="location"
+          >
             Location
           </label>
           <input
@@ -173,21 +192,20 @@ function SubmitAttendanceForm() {
 
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-gray-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
             onClick={handleSubmit}
           >
             Submit
           </button>
-          
-          <button
-          type="button"
-          onClick={handleCancel}
-          className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-4"
-          >
-          Cancel
-          </button>
 
+          <button
+            type="button"
+            onClick={handleCancel}
+            className="bg-red-500 text-white font-bold py-2 px-4 rounded ml-4"
+          >
+            Cancel
+          </button>
         </div>
       </form>
     </div>

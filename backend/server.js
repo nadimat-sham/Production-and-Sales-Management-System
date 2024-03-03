@@ -23,6 +23,7 @@ const employeePerformanceRoutes = require("./routes/employee/employeePerformance
 
 // express app
 const app = express();
+const path = require("path");
 
 // middleware
 app.use(express.json());
@@ -32,8 +33,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes
-
+app.use("/uploads", express.static(path.join(__dirname, "../backend/uploads")));
 //Showroom routes
 app.use("/showroom/products", showRoomProductRoutes);
 app.use("/showroom/sells", sellRoutes);

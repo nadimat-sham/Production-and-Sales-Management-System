@@ -70,11 +70,11 @@ const OrderHistoryPage = () => {
   return (
     <div>
       <div className="fixed w-[1200px]">
-        <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+        <div className=" py-4 bg-white pr-[100px] flex justify-end gap-0 mr-0 items-center ml-[0px] bg-opacity-100">
           <button
             onClick={() => setStatusFilter("all")}
             className={`px-4 py-2 rounded ${
-              statusFilter === "all" ? "bg-blue-200" : ""
+              statusFilter === "all" ? "bg-gray-800 text-white" : ""
             }`}
           >
             All
@@ -82,7 +82,7 @@ const OrderHistoryPage = () => {
           <button
             onClick={() => setStatusFilter("pending")}
             className={`px-4 py-2 rounded ${
-              statusFilter === "pending" ? "bg-blue-200" : ""
+              statusFilter === "pending" ? "bg-gray-800 text-white" : ""
             }`}
           >
             Pending
@@ -90,7 +90,7 @@ const OrderHistoryPage = () => {
           <button
             onClick={() => setStatusFilter("accepted")}
             className={`px-4 py-2 rounded ${
-              statusFilter === "accepted" ? "bg-blue-200" : ""
+              statusFilter === "accepted" ? "bg-gray-800 text-white" : ""
             }`}
           >
             Accepted
@@ -98,10 +98,19 @@ const OrderHistoryPage = () => {
           <button
             onClick={() => setStatusFilter("rejected")}
             className={`px-4 py-2 rounded ${
-              statusFilter === "rejected" ? "bg-blue-200" : ""
+              statusFilter === "rejected" ? "bg-gray-800 text-white" : ""
             }`}
           >
             Rejected
+          </button>
+
+          <button
+            onClick={() => setStatusFilter("received")}
+            className={`px-4 py-2 rounded ${
+              statusFilter === "received" ? "bg-gray-800 text-white" : ""
+            }`}
+          >
+            Received
           </button>
 
           <input
@@ -123,7 +132,7 @@ const OrderHistoryPage = () => {
             type="date"
             value={searchDate}
             onChange={handleDateSearch}
-            className="ml-4 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+            className="ml-0 border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
           />
         </div>
       </div>

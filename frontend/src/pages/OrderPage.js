@@ -10,6 +10,8 @@ const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [orderCart, setOrderCart] = useState([]);
   const [changed, setChanged] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("all"); // New state variable for selected category
+
   //const [referenceName, setReferenceName] = useState(""); // New state variable for reference name
 
   useEffect(() => {
@@ -77,7 +79,41 @@ const Products = () => {
     <div className="Product grid grid-cols-5 gap-4 mt-0 ">
       <div className="col-span-3">
         <div className=" fixed w-[1200px]">
-          <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+          <div className=" py-4 bg-white pr-[100px] flex justify-between gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+            <div className="pl-10">
+              <button
+                onClick={() => setSelectedCategory("all")}
+                className={`px-4 py-2 rounded ${
+                  selectedCategory === "all" ? "bg-gray-800 text-white" : ""
+                }`}
+              >
+                All
+              </button>
+              <button
+                onClick={() => setSelectedCategory("sweets")}
+                className={`px-4 py-2 rounded ${
+                  selectedCategory === "sweets" ? "bg-gray-800 text-white" : ""
+                }`}
+              >
+                Sweets
+              </button>
+              <button
+                onClick={() => setSelectedCategory("deserts")}
+                className={`px-4 py-2 rounded ${
+                  selectedCategory === "deserts" ? "bg-gray-800 text-white" : ""
+                }`}
+              >
+                Deserts
+              </button>
+              <button
+                onClick={() => setSelectedCategory("cake")}
+                className={`px-4 py-2 rounded ${
+                  selectedCategory === "cake" ? "bg-gray-800 text-white" : ""
+                }`}
+              >
+                Cake
+              </button>
+            </div>
             <input
               type="text"
               placeholder="Search..."
@@ -92,6 +128,11 @@ const Products = () => {
             products
               .filter((product) =>
                 product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+              )
+              .filter((product) =>
+                selectedCategory === "all"
+                  ? true
+                  : product.catagory === selectedCategory
               )
               .map((product) => (
                 <ProductInOrder
@@ -146,7 +187,7 @@ const Products = () => {
               onClick={handleOrder}
               disabled={orderCart.length === 0} // Disable the button when referenceName is empty or there are no items in the cart
               className={` px-4 py-2 text-white rounded-md ${
-                orderCart.length === 0 ? "bg-gray-500" : "bg-blue-500"
+                orderCart.length === 0 ? "bg-gray-500" : "bg-gray-800"
               }`}
             >
               Order

@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Customer = ({ customer }) => {
+  const { user } = useAuthContext();
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -29,24 +31,28 @@ const Customer = ({ customer }) => {
         <p className="mt-2 text-gray-500">ID: {customer._id}</p>
         <p className="mt-2 text-gray-500">Mobile: {customer.mobile}</p>
         <p className="mt-2 text-gray-500">Address: {customer.address}</p>
-        <button
-          onClick={handleEdit}
-          className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md"
-        >
-          Edit
-        </button>
+        {user.username === "showroom_manager" && (
+          <button
+            onClick={handleEdit}
+            className="mt-3 px-4 py-2 bg-gray-800 text-white rounded-md"
+          >
+            Edit
+          </button>
+        )}
         <button
           onClick={handleViewBuyHistory}
-          className="mt-3 ml-3 px-4 py-2 bg-green-500 text-white rounded-md"
+          className="mt-3 ml-3 px-4 py-2 bg-gray-800 text-white rounded-md"
         >
           View Buy History
         </button>
-        <button
-          onClick={handleDelete}
-          className="mt-3 ml-72 px-4 py-2 bg-red-500 text-white rounded-md"
-        >
-          Delete
-        </button>
+        {user.username === "showroom_manager" && (
+          <button
+            onClick={handleDelete}
+            className="mt-3 ml-72 px-4 py-2 bg-red-500 text-white rounded-md"
+          >
+            Delete
+          </button>
+        )}
       </div>
     </div>
   );

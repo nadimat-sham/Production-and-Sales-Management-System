@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Bar } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import axios from "axios";
 
@@ -41,7 +41,13 @@ function BarChartPrice({ products, startingDate, endingDate }) {
             {
               label: "Total Sell Amount",
               data: datas,
-              backgroundColor: ["#f3ba2f"],
+              backgroundColor: [
+                "#2a71d0",
+                // "rgba(75,192,192,1)",
+                // "#ecf0f1",
+                // "#50AF95",
+                // "#f3ba2f",
+              ],
               borderColor: "black",
               borderWidth: 1,
             },

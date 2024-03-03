@@ -3,13 +3,14 @@ import axios from "axios";
 import ProductInSell from "../components/ProductInSell";
 import { useNavigate } from "react-router-dom";
 
-const Products = () => {
+const Products = ({ user }) => {
   const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [cart, setCart] = useState([]);
   const [referenceName, setReferenceName] = useState(""); // New state variable for reference name
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -32,6 +33,10 @@ const Products = () => {
 
     fetchCustomers();
     fetchProducts();
+    if (user.username === "desert_seller") setSelectedCategory("deserts");
+    if (user.username === "cake_seller") setSelectedCategory("cake");
+    if (user.username === "sweet_seller") setSelectedCategory("sweets");
+
     //console.log(products);
     //console.log(customers);
   }, []);
@@ -74,14 +79,71 @@ const Products = () => {
     <div className="Product grid grid-cols-5 gap-4 mt-0 ">
       <div className="col-span-3">
         <div className=" fixed w-[1200px]">
-          <div className=" py-4 bg-white pr-[100px] flex justify-end gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={handleSearch}
-              className=" border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-            />
+          <div className=" py-4 bg-white pr-[100px] flex justify-between gap-3 mr-0 items-center ml-[0px] bg-opacity-100">
+            <div className="pl-10">
+              {user.username === "showroom_manager" && (
+                <button
+                  onClick={() => setSelectedCategory("all")}
+                  className={`px-4 py-2 rounded ${
+                    selectedCategory === "all"
+                      ? "bg-gray-800    text-white"
+                      : ""
+                  }`}
+                >
+                  All
+                </button>
+              )}
+              {(user.username === "showroom_manager" ||
+                user.username === "sweet_seller") && (
+                <button
+                  onClick={() => setSelectedCategory("sweets")}
+                  className={`px-4 py-2 rounded ${
+                    selectedCategory === "sweets"
+                      ? "bg-gray-800   text-white"
+                      : ""
+                  }`}
+                >
+                  Sweets
+                </button>
+              )}
+              {(user.username === "showroom_manager" ||
+                user.username === "desert_seller") && (
+                <button
+                  onClick={() => setSelectedCategory("deserts")}
+                  className={`px-4 py-2 rounded ${
+                    selectedCategory === "deserts" ||
+                    user.username === "desert_seller"
+                      ? "bg-gray-800   text-white"
+                      : ""
+                  }`}
+                >
+                  Deserts
+                </button>
+              )}
+              {(user.username === "showroom_manager" ||
+                user.username === "cake_seller") && (
+                <button
+                  onClick={() => setSelectedCategory("cake")}
+                  className={`px-4 py-2 rounded ${
+                    selectedCategory === "cake" ||
+                    user.username === "cake_seller"
+                      ? "bg-gray-800   text-white"
+                      : ""
+                  }`}
+                >
+                  Cakes
+                </button>
+              )}
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchTerm}
+                onChange={handleSearch}
+                className=" border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+              />
+            </div>
           </div>
         </div>
         <div className="products pt-16">
@@ -89,6 +151,11 @@ const Products = () => {
             products
               .filter((product) =>
                 product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+              )
+              .filter((product) =>
+                selectedCategory === "all"
+                  ? true
+                  : product.catagory === selectedCategory
               )
               .map((product) => (
                 <ProductInSell
@@ -161,7 +228,7 @@ const Products = () => {
               className={` px-4 py-2 text-white rounded-md ${
                 !referenceName || cart.length === 0
                   ? "bg-gray-500"
-                  : "bg-blue-500"
+                  : "bg-gray-800"
               }`}
             >
               Sell

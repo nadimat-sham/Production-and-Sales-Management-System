@@ -15,6 +15,9 @@ const Sidebar = () => {
 
   const showroom_manager = "showroom_manager";
   const factory_manager = "factory_manager";
+  const desert_seller = "desert_seller";
+  const sweet_seller = "sweet_seller";
+  const cake_seller = "cake_seller";
 
   return (
     <div className="flex">
@@ -27,7 +30,10 @@ const Sidebar = () => {
         </Link>
 
         <div className="text-white text-lg ">
-          {user.username === showroom_manager && (
+          {(user.username === showroom_manager ||
+            user.username === desert_seller ||
+            user.username === sweet_seller ||
+            user.username === cake_seller) && (
             <div
               className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 hover:scale-105 cursor-pointer"
               onClick={() => {
@@ -84,31 +90,35 @@ const Sidebar = () => {
                 </Link>
               </div>
 
-              <div
-                onClick={() => setSelectedLink("order")}
-                className={
-                  selectedLink === "order"
-                    ? "w-full py-2 px-4 bg-gray-700 scale-105"
-                    : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
-                }
-              >
-                <Link to="/order" className="block w-full h-full">
-                  Order
-                </Link>
-              </div>
+              {user.username === showroom_manager && (
+                <div
+                  onClick={() => setSelectedLink("order")}
+                  className={
+                    selectedLink === "order"
+                      ? "w-full py-2 px-4 bg-gray-700 scale-105"
+                      : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
+                  }
+                >
+                  <Link to="/order" className="block w-full h-full">
+                    Order
+                  </Link>
+                </div>
+              )}
 
-              <div
-                onClick={() => setSelectedLink("receive")}
-                className={
-                  selectedLink === "receive"
-                    ? "w-full py-2 px-4 bg-gray-700 scale-105"
-                    : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
-                }
-              >
-                <Link to="/receive" className="block w-full h-full">
-                  Receive
-                </Link>
-              </div>
+              {user.username === showroom_manager && (
+                <div
+                  onClick={() => setSelectedLink("receive")}
+                  className={
+                    selectedLink === "receive"
+                      ? "w-full py-2 px-4 bg-gray-700 scale-105"
+                      : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
+                  }
+                >
+                  <Link to="/receive" className="block w-full h-full">
+                    Receive
+                  </Link>
+                </div>
+              )}
 
               <div
                 onClick={() => setSelectedLink("sell-history")}
@@ -123,31 +133,36 @@ const Sidebar = () => {
                 </Link>
               </div>
 
-              <div
-                onClick={() => setSelectedLink("order-history")}
-                className={
-                  selectedLink === "order-history"
-                    ? "w-full py-2 px-4 bg-gray-700 scale-105"
-                    : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
-                }
-              >
-                <Link to="/order-history" className="block w-full h-full">
-                  Order History
-                </Link>
-              </div>
+              {(user.username === showroom_manager ||
+                user.username === factory_manager) && (
+                <div>
+                  <div
+                    onClick={() => setSelectedLink("order-history")}
+                    className={
+                      selectedLink === "order-history"
+                        ? "w-full py-2 px-4 bg-gray-700 scale-105"
+                        : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
+                    }
+                  >
+                    <Link to="/order-history" className="block w-full h-full">
+                      Order History
+                    </Link>
+                  </div>
 
-              <div
-                onClick={() => setSelectedLink("receive-history")}
-                className={
-                  selectedLink === "receive-history"
-                    ? "w-full py-2 px-4 bg-gray-700 scale-105"
-                    : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
-                }
-              >
-                <Link to="/receive-history" className="block w-full h-full">
-                  Receive History
-                </Link>
-              </div>
+                  <div
+                    onClick={() => setSelectedLink("receive-history")}
+                    className={
+                      selectedLink === "receive-history"
+                        ? "w-full py-2 px-4 bg-gray-700 scale-105"
+                        : "w-full py-2 px-4 hover:bg-gray-700 hover:scale-105"
+                    }
+                  >
+                    <Link to="/receive-history" className="block w-full h-full">
+                      Receive History
+                    </Link>
+                  </div>
+                </div>
+              )}
             </>
           )}
 
@@ -167,18 +182,20 @@ const Sidebar = () => {
 
           {isHistoryOpen && <></>}
 
-          <div
-            className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 hover:scale-105 cursor-pointer"
-            onClick={() => {
-              setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
-              if (isHistoryOpen) setIsHistoryOpen(!isHistoryOpen);
-              if (isOpen) setIsOpen(!isOpen);
-              if (isFactoryManagementOpen)
-                setIsFactoryManagementOpen(!isFactoryManagementOpen);
-            }}
-          >
-            Employee Management
-          </div>
+          {user.username === "employee_manager" && (
+            <div
+              className="text-red-500 w-full py-2 px-4 hover:bg-gray-700 hover:scale-105 cursor-pointer"
+              onClick={() => {
+                setIsEmployeeManagementOpen(!isEmployeeManagementOpen);
+                if (isHistoryOpen) setIsHistoryOpen(!isHistoryOpen);
+                if (isOpen) setIsOpen(!isOpen);
+                if (isFactoryManagementOpen)
+                  setIsFactoryManagementOpen(!isFactoryManagementOpen);
+              }}
+            >
+              Employee Management
+            </div>
+          )}
 
           {isEmployeeManagementOpen && (
             <>
@@ -194,7 +211,7 @@ const Sidebar = () => {
                 </Link>
               </div> */}
 
-              {/* <div className="w-full py-2 px-4 hover:bg-gray-700 hover:scale-105">
+              <div className="w-full py-2 px-4 hover:bg-gray-700 hover:scale-105">
                 <Link to="/employeesAttendance" className="block w-full h-full">
                   Attendance
                 </Link>
@@ -207,7 +224,7 @@ const Sidebar = () => {
                 >
                   Performance
                 </Link>
-              </div> */}
+              </div>
             </>
           )}
 

@@ -61,15 +61,15 @@ const EmployeePage = () => {
             <button
               onClick={() => setStatusFilter("all")}
               className={`px-4 py-2 rounded ${
-                statusFilter === "all" ? "bg-blue-200" : ""
+                statusFilter === "all" ? "bg-gray-800 text-white" : ""
               }`}
             >
               All
             </button>
             <button
-              onClick={() => setStatusFilter("cashiers")}
+              onClick={() => setStatusFilter("cashier")}
               className={`px-4 py-2 rounded ${
-                statusFilter === "cashiers" ? "bg-blue-200" : ""
+                statusFilter === "cashier" ? "bg-gray-800 text-white" : ""
               }`}
             >
               Cashiers
@@ -77,7 +77,7 @@ const EmployeePage = () => {
             <button
               onClick={() => setStatusFilter("salesman")}
               className={`px-4 py-2 rounded ${
-                statusFilter === "salesman" ? "bg-blue-200" : ""
+                statusFilter === "salesman" ? "bg-gray-800 text-white" : ""
               }`}
             >
               Salesman
@@ -85,7 +85,7 @@ const EmployeePage = () => {
             <button
               onClick={() => setStatusFilter("guard")}
               className={`px-4 py-2 rounded ${
-                statusFilter === "guard" ? "bg-blue-200" : ""
+                statusFilter === "guard" ? "bg-gray-800 text-white" : ""
               }`}
             >
               Guards

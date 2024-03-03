@@ -3,22 +3,20 @@ const Account = require("../../models/employee/employeeAccount");
 
 // Create an employee
 const createEmployee = async (req, res) => {
+  console.log("indie createEmployee");
+  const { name, position, email, phone, address, salary, hireDate } = req.body;
+  console.log();
   try {
-    const employee = await Employee.create(req.body);
-    //console.log(employee)
+    const employee = await Employee.create({
+      name,
+      position,
+      email,
+      phone,
+      address,
+      salary,
+      hireDate,
+    });
     res.status(200).json(employee);
-
-    //console.log(employee._id)
-    //console.log("create and save account?")
-    employee
-      .save()
-      .then((savedEmployee) => {
-        //console.log('Employee saved:', savedEmployee);
-        // The account record for the employee has been automatically created
-      })
-      .catch((error) => {
-        console.error("Error saving employee:", error);
-      });
   } catch (error) {
     res.status(400).json({ error: "Failed to create employee" });
   }
@@ -26,6 +24,7 @@ const createEmployee = async (req, res) => {
 
 // Get all employees
 const getAllEmployees = async (req, res) => {
+  console.log("indie getAllEmployees");
   try {
     const employees = await Employee.find();
     const searchQuery = req.query.search;

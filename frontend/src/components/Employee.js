@@ -70,7 +70,7 @@ const Employee = ({ employee }) => {
         <div className="flex justify-end">
           <button
             onClick={() => handleUpdate(employee._id)}
-            className="mt-3 px-4 py-2 bg-blue-500 text-white rounded-md"
+            className="mt-3 px-4 py-2 bg-gray-800 text-white rounded-md"
           >
             Edit
           </button>

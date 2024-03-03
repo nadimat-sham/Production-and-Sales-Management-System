@@ -39,6 +39,9 @@ import SignupPage from "./pages/SignupPage";
 function App() {
   const showroom_manager = "showroom_manager";
   const factory_manager = "factory_manager";
+  const desert_seller = "desert_seller";
+  const cake_seller = "cake_seller";
+  const sweet_seller = "sweet_seller";
 
   const { user } = useAuthContext();
   //console.log("user");
@@ -69,13 +72,17 @@ function App() {
                 <Route
                   path="/products"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <Products />
                     ) : (
                       <Navigate to="/login" />
                     )
                   }
                 />
+                
                 <Route
                   path="/factory/rawmaterials"
                   element={
@@ -91,7 +98,10 @@ function App() {
                 <Route
                   path="/add-product"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <AddProduct />
                     ) : (
                       <Navigate to="/login" />
@@ -101,8 +111,11 @@ function App() {
                 <Route
                   path="/sell"
                   element={
-                    user && user.username === showroom_manager ? (
-                      <Sell />
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
+                      <Sell user={user} />
                     ) : (
                       <Navigate to="/login" />
                     )
@@ -111,7 +124,10 @@ function App() {
                 <Route
                   path="/sell-history"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <SellHistory />
                     ) : (
                       <Navigate to="/login" />
@@ -121,7 +137,10 @@ function App() {
                 <Route
                   path="/customers"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <Customers />
                     ) : (
                       <Navigate to="/login" />
@@ -131,7 +150,10 @@ function App() {
                 <Route
                   path="/customers/:id"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <CustomersSellHistory />
                     ) : (
                       <Navigate to="/login" />
@@ -141,7 +163,10 @@ function App() {
                 <Route
                   path="/order"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <Order />
                     ) : (
                       <Navigate to="/login" />
@@ -193,7 +218,10 @@ function App() {
                 <Route
                   path="/receive"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <ReceivePage />
                     ) : (
                       <Navigate to="/login" />
@@ -203,7 +231,10 @@ function App() {
                 <Route
                   path="/receive-history"
                   element={
-                    user && user.username === showroom_manager ? (
+                    user && (user.username === showroom_manager ||
+                user.username === desert_seller ||
+                user.username === cake_seller ||
+                user.username === sweet_seller) ? (
                       <ReceiveHistoryPage />
                     ) : (
                       <Navigate to="/login" />

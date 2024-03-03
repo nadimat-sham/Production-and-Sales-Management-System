@@ -9,7 +9,7 @@ const AddEmployee = ({ employees, setEmployees, setAddAnEmployee }) => {
   const [address, setAddress] = useState("");
   const [hireDate, setHireDate] = useState("");
 
-  const handleAddEmployee = () => {
+  const handleAddEmployee = async () => {
     const newEmployee = {
       name,
       position,
@@ -19,7 +19,16 @@ const AddEmployee = ({ employees, setEmployees, setAddAnEmployee }) => {
       salary,
       hireDate,
     };
+    const response = await fetch("/employees/add", {
+      method: "POST",
+      body: JSON.stringify(newEmployee),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
     setEmployees([...employees, newEmployee]);
+
     setAddAnEmployee(false);
   };
 

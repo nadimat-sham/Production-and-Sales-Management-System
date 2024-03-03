@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SellHistory from "../components/SellHistory";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SellHistoryPage = () => {
+  const location = useLocation();
   const [sellHistory, setSellHistory] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState("mobile");
@@ -10,6 +12,10 @@ const SellHistoryPage = () => {
 
   //console.log("hereeeeeeeee");
   useEffect(() => {
+    if (location.state) {
+      setSearchTerm(location.state.product.name);
+      setSearchType("product");
+    }
     const fetchSellHistory = async () => {
       try {
         const response = await axios.get("showroom/sells/history/sell");

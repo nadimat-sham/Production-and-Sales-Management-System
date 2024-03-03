@@ -16,6 +16,11 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
+    productionCost: {
+      type: Number,
+      required: true,
+      default: 100,
+    },
     sold: {
       type: Number,
       required: false,
@@ -29,7 +34,11 @@ const productSchema = new Schema(
       type: Number,
       required: false,
       default: 0,
-    }
+    },
+    image: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );

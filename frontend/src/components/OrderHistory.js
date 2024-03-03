@@ -2,8 +2,10 @@ import React, { useContext } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const OrderHistory = ({ orderRecord }) => {
+  const navigate = useNavigate();
   let id = 1;
   let totalSum = 0;
   const { user } = useAuthContext();
@@ -32,9 +34,15 @@ const OrderHistory = ({ orderRecord }) => {
         return "bg-green-200 text-green-700 px-2 py-1 rounded";
       case "rejected":
         return "bg-red-200 text-red-700 px-2 py-1 rounded";
+      case "received":
+        return "bg-green-300 text-green-800 px-2 py-1 rounded";
       default:
         return "";
     }
+  };
+
+  const handleReceive = (orderRecord) => {
+    navigate("/receive", { state: { orderRecord } });
   };
 
   return (
@@ -44,8 +52,19 @@ const OrderHistory = ({ orderRecord }) => {
           <div className="tracking-wide text-indigo-500 font-semibold">
             ID: {orderRecord._id}
           </div>
-          <div className={getStatusStyle(orderRecord.status)}>
-            {orderRecord.status}
+          <div className="flex gap-2">
+            {orderRecord.status === "accepted" &&
+              user.username === "showroom_manager" && (
+                <button
+                  onClick={() => handleReceive(orderRecord)}
+                  className="bg-green-200 text-green-700 px-2 py-1 rounded"
+                >
+                  Receive
+                </button>
+              )}
+            <div className={getStatusStyle(orderRecord.status)}>
+              {orderRecord.status}
+            </div>
           </div>
           {user.username === "factory_manager" &&
             orderRecord.status === "pending" && (
@@ -91,7 +110,7 @@ const OrderHistory = ({ orderRecord }) => {
             <tr>
               <th className="px-4 py-2">No.</th>
               <th className="px-4 py-2">Item</th>
-              <th className="px-4 py-2">Quantity Sold</th>
+              <th className="px-4 py-2">Quantity Ordered</th>
               <th className="px-4 py-2">Unit Price</th>
               <th className="px-4 py-2">Total Amount</th>
             </tr>

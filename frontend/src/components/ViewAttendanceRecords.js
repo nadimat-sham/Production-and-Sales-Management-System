@@ -1,24 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 function ViewAttendanceRecords() {
   const [records, setRecords] = useState([]);
   const fetchRecords = async () => {
     try {
-      const response = await axios.get('employeesAttendance');
+      const response = await axios.get("employeesAttendance");
       // Check if the response data is an array before setting it
       if (Array.isArray(response.data)) {
         setRecords(response.data);
       } else {
         // If not an array, set records to an empty array
         setRecords([]);
-        console.warn('Expected an array for attendance records, but received:', response.data);
+        console.warn(
+          "Expected an array for attendance records, but received:",
+          response.data
+        );
       }
     } catch (error) {
-      console.error('Failed to fetch attendance records', error);
+      console.error("Failed to fetch attendance records", error);
       // Ensure records is set to an empty array in case of error
       setRecords([]);
-      alert('Failed to fetch attendance records');
+      alert("Failed to fetch attendance records");
     }
   };
   useEffect(() => {
@@ -27,10 +30,10 @@ function ViewAttendanceRecords() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete('/employeesAttendance/'+id);
+      await axios.delete("/employeesAttendance/" + id);
       fetchRecords(); // Refresh the list after deletion
     } catch (error) {
-      alert('Failed to delete record');
+      alert("Failed to delete record");
     }
   };
 
@@ -43,15 +46,19 @@ function ViewAttendanceRecords() {
             <p>Employee Username: {record.employeeUsername}</p>
             <p>Date: {new Date(record.date).toLocaleDateString()}</p>
             <p>Status: {record.status}</p>
-            {record.checkIn && <p>Check-In: {new Date(record.checkIn).toLocaleTimeString()}</p>}
-            {record.checkOut && <p>Check-Out: {new Date(record.checkOut).toLocaleTimeString()}</p>}
+            {record.checkIn && (
+              <p>
+                CheckInTime: {new Date(record.checkIn).toLocaleTimeString()}
+              </p>
+            )}
+            {/* {record.checkOut && <p>Check-Out: {new Date(record.checkOut).toLocaleTimeString()}</p>} */}
             {record.reason && <p>Reason: {record.reason}</p>}
-            {record.location && <p>Location: {record.location}</p>}
+            {/* {record.location && <p>Location: {record.location}</p>} */}
             <button
-            onClick={() => handleDelete(record._id)}
-            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => handleDelete(record._id)}
+              className="mt-3 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
             >
-            Delete
+              Delete
             </button>
           </div>
         ))

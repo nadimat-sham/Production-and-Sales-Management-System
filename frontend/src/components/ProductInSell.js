@@ -19,16 +19,29 @@ const ProductInSell = ({ product, onAddToCart, onRemoveFromCart }) => {
   return (
     <div className="max-w-md  bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3 w-[550px]">
       <div className="p-8">
-        <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-          Category: {product.catagory}
+        <div className="grid grid-cols-7">
+          <div className="col-span-2">
+            <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+              {product.name}
+            </div>
+            <p className="mt-2 text-gray-500">Category: {product.catagory}</p>
+            {/* <p className="mt-2 text-gray-500">ID: {product._id}</p> */}
+            <p className="mt-2 text-gray-500">
+              ProductionCost: {product.productionCost}
+            </p>
+
+            <p className="mt-2 text-gray-500">Price: {product.price}</p>
+            <p className="mt-2 text-gray-500">Sold: {product.sold}</p>
+            <p className="mt-2 text-gray-500">In Stock: {product.inStock}</p>
+          </div>
+          <div className="col-span-5">
+            <img
+              src={"/uploads/" + product.image}
+              alt={product.name}
+              className="w-full h-44 object-cover rounded-md"
+            />
+          </div>
         </div>
-        <p className="block mt-1 text-lg leading-tight font-medium text-black">
-          Name: {product.name}
-        </p>
-        <p className="mt-2 text-gray-500">ID: {product._id}</p>
-        <p className="mt-2 text-gray-500">Price: {product.price}</p>
-        <p className="mt-2 text-gray-500">Sold: {product.sold}</p>
-        <p className="mt-2 text-gray-500">In Stock: {product.inStock}</p>
 
         <div className="flex justify-end gap-6 items-center">
           <input
@@ -43,7 +56,7 @@ const ProductInSell = ({ product, onAddToCart, onRemoveFromCart }) => {
           <button
             onClick={handleAddToCart}
             className={`mt-3  px-4 py-2 text-white rounded-md ${
-              isInCart ? "bg-red-500" : "bg-green-500"
+              isInCart ? "bg-red-500" : "bg-gray-800"
             }`}
           >
             {isInCart ? "Remove from Cart" : "Add to Cart"}

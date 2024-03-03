@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 // get all products
 const getProducts = async (req, res) => {
   const products = await Product.find({}).sort({ createdAt: -1 });
-
+  console.log(products);
   res.status(200).json(products);
 };
 
@@ -28,11 +28,17 @@ const getProduct = async (req, res) => {
 
 // create a new product
 const createProduct = async (req, res) => {
-  const { name, catagory, price, inStock } = req.body;
+  const { name, catagory, productionCost, price, inStock } = req.body;
   ////console.log(req.body);
   // add to the database
   try {
-    const product = await Product.create({ name, catagory, price, inStock });
+    const product = await Product.create({
+      name,
+      catagory,
+      productionCost,
+      price,
+      inStock,
+    });
     //console.log(product);
     res.status(200).json(product);
   } catch (error) {
@@ -119,7 +125,7 @@ const deleteProduct = async (req, res) => {
 // update a product
 const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, price, sold, inStock } = req.body;
+  const { name, productionCost, price, sold, inStock } = req.body;
   //console.log(name, price);
   // return;
 
@@ -134,6 +140,7 @@ const updateProduct = async (req, res) => {
   }
 
   product.name = name;
+  product.productionCost = productionCost;
   product.price = price;
   product.sold = sold;
   product.inStock = inStock;

@@ -29,6 +29,7 @@ function BarChartQuantity({ products, startingDate, endingDate }) {
                     //console.log("kheer");
                   }
                   if (soldProduct.product.name === label) {
+                    // console.log("soldProduct", soldProduct, "soldProduct");
                     total += soldProduct.quantity;
                   }
                 }
@@ -45,7 +46,13 @@ function BarChartQuantity({ products, startingDate, endingDate }) {
             {
               label: "Total Sell Quantity",
               data: datas,
-              backgroundColor: ["#50AF95"],
+              backgroundColor: [
+                "#f3ba2f",
+                // "rgba(200,0,0,1)",
+                // "#50AF95", // "rgba(75,192,192,1)",
+                // "#ecf0f1",
+                // "#50AF95",
+              ],
               borderColor: "black",
               borderWidth: 1,
             },

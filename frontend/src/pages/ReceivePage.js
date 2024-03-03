@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import OrderInReceive from "../components/OrderInReceive";
 
 const ReceivePage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const orderRecord = location.state ? location.state.orderRecord : null;
   const [searchTerm, setSearchTerm] = useState("");
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -99,6 +105,22 @@ const ReceivePage = () => {
     setCart(newCart);
   };
 
+  const handleStatusChange = async (orderId, newStatus) => {
+    console.log("orderId", orderId);
+    console.log("newStatus", newStatus);
+    const response = await fetch(`/factory/orders/${orderId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: newStatus }),
+    });
+    if (response.ok) {
+      orderRecord.status = newStatus;
+    }
+    navigate("/order-history");
+  };
+
   const handleReceive = async () => {
     const cartToSend = cart.map((item) => ({
       product_id: item.product._id,
@@ -118,18 +140,35 @@ const ReceivePage = () => {
       //console.log(json);
       // window.location.reload();
       setCart([]);
+      if (orderRecord) handleStatusChange(orderRecord._id, "received");
     } catch (error) {
       console.error("Error receiving products:", error);
     }
   };
 
+  const handleQuantityChange = (e, item) => {
+    item.quantity = e.target.value;
+  };
+
   //console.log(cart);
   return (
     <div className="p-4">
-      <h1 className="text-3xl mt-8 mb-4">Receive page</h1>
-      <div className="grid grid-cols-7 gap-6">
-        <div className="col-span-3">
-          <div className="flex items-end">
+      <div className="flex justify-center">
+        {orderRecord ? (
+          <h1 className="ml-6 text-3xl mt-8 mb-4">Receive order against</h1>
+        ) : (
+          <h1 className="ml-6 text-3xl mt-8 mb-4">Receive</h1>
+        )}
+      </div>
+      {orderRecord && (
+        <div className="flex justify-center">
+          <OrderInReceive orderRecord={orderRecord}> </OrderInReceive>
+        </div>
+      )}
+
+      <div className="">
+        <div className="">
+          <div className="flex items-end justify-center">
             <div className="relative" ref={wrapperRef}>
               <p
                 className={`mt-2 ${
@@ -181,23 +220,23 @@ const ReceivePage = () => {
                 className="border p-2 rounded w-full ml-2" // ml-2 for margin-left
               />
             </div>
-          </div>
-          <div className="flex justify-center mt-3">
-            <button
-              onClick={handleAddToCart}
-              disabled={
-                validationMessage !== "ok product is in database" ||
-                validationMessageQuantity !== qauntityOk
-              }
-              className={` px-4 py-2 text-white rounded-md ${
-                validationMessage !== "ok product is in database" ||
-                validationMessageQuantity !== qauntityOk
-                  ? "bg-gray-500"
-                  : "bg-blue-500"
-              }`}
-            >
-              Add
-            </button>
+            <div className="add button ml-5">
+              <button
+                onClick={handleAddToCart}
+                disabled={
+                  validationMessage !== "ok product is in database" ||
+                  validationMessageQuantity !== qauntityOk
+                }
+                className={` px-4 py-2 text-white rounded-md ${
+                  validationMessage !== "ok product is in database" ||
+                  validationMessageQuantity !== qauntityOk
+                    ? "bg-gray-500"
+                    : "bg-gray-800"
+                }`}
+              >
+                Add
+              </button>
+            </div>
           </div>
         </div>
         <div className="col-span-4">
@@ -234,7 +273,17 @@ const ReceivePage = () => {
                     {item.product.name}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
-                    {item.quantity}
+                    <input
+                      type="number"
+                      min="0"
+                      value={item.quantity}
+                      onChange={(e) => {
+                        item.quantity = e.target.value;
+                        setCart([...cart]);
+                      }}
+                      // onBlur={handleSave}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    />
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
                     {item.product.price}
@@ -254,24 +303,28 @@ const ReceivePage = () => {
               ))}
             </tbody>
           </table>
-          <div className="mt-4 text-gray-600">
-            Total:{" "}
-            {cart.reduce(
-              (total, item) => total + item.product.price * item.quantity,
-              0
-            )}
+          <div className="">
+            <div className="mt-4 text-gray-600 flex justify-center">
+              Total:{" "}
+              {cart.reduce(
+                (total, item) => total + item.product.price * item.quantity,
+                0
+              )}
+            </div>
+            <div className="flex justify-center">
+              <button
+                onClick={handleReceive}
+                disabled={cart.length === 0}
+                className={
+                  cart.length === 0
+                    ? "mt-4 bg-gray-500 text-white font-bold py-2 px-4 rounded"
+                    : "mt-4 bg-gray-800 text-white font-bold py-2 px-4 rounded"
+                }
+              >
+                Receive
+              </button>
+            </div>
           </div>
-          <button
-            onClick={handleReceive}
-            disabled={cart.length === 0}
-            className={
-              cart.length === 0
-                ? "mt-4 bg-gray-500 text-white font-bold py-2 px-4 rounded"
-                : "mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            }
-          >
-            Receive
-          </button>
         </div>
       </div>
     </div>
